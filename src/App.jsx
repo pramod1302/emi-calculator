@@ -5,7 +5,12 @@ import SIPvsFD from './pages/SIPvsFD';
 import UPIChargesBill from './pages/UPIChargesBill';
 import RBIRepoRate from './pages/RBIRepoRate';
 import Blog from './pages/Blog';
-
+import MFOnlyPMS from './pages/MFOnlyPMS';
+import GoldmanSachsGDP from './pages/GoldmanSachsGDP';
+import Budget2026 from './pages/Budget2026';
+import MoodysForecast from './pages/MoodysForecast';
+import IncomeTaxRules2026 from './pages/IncomeTaxRules2026';
+import HealthInsuranceGuide from './pages/HealthInsuranceGuide';
 function App() {
   const [path, setPath] = useState(window.location.pathname);
 
@@ -33,6 +38,24 @@ function App() {
   }
 if (path === '/blog') {
   return <Blog />;
+}
+if (path === '/sebi-mf-pms-proposal') {
+  return <MFOnlyPMS />;
+}
+if (path === '/goldman-sachs-gdp-upgrade') {
+  return <GoldmanSachsGDP />;
+}
+if (path === '/budget-2026') {
+  return <Budget2026 />;
+}
+if (path === '/moodys-forecast') {
+  return <MoodysForecast />;
+}
+if (path === '/income-tax-rules-2026') {
+  return <IncomeTaxRules2026 />;
+}
+if (path === '/health-insurance-guide') {
+  return <HealthInsuranceGuide />;
 }
   // Default: show calculator
   return <EMICalculator />;

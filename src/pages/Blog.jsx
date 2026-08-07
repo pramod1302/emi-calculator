@@ -25,12 +25,54 @@ function Blog() {
       excerpt: 'Practical strategies to reduce your home loan interest burden and become debt-free faster.'
     },
     {
+  slug: '/sebi-mf-pms-proposal',
+  title: 'SEBI Proposes Mutual Fund-Only PMS: Key Changes That Could Impact Your Investments',
+  date: 'August 7, 2026',
+  category: 'Mutual Funds',
+  excerpt: 'Market regulator\'s new framework could lower entry barriers for affluent investors and reshape India\'s wealth management industry with a ₹25 lakh entry point.'
+},
+    {
       slug: '/sip-vs-fd',
       title: 'SIP vs FD: Which Investment is Better for You?',
       date: 'March 16, 2026',
       category: 'Investment',
       excerpt: 'A detailed comparison of Systematic Investment Plans and Fixed Deposits to help you make the right choice.'
     },
+    {
+  slug: '/goldman-sachs-gdp-upgrade',
+  title: "Goldman Sachs Upgrades India's 2026 GDP Growth Forecast to 6.8%",
+  date: 'August 7, 2026',
+  category: 'Economy',
+  excerpt: 'US-Iran peace deal and lower crude oil prices drive upgrade, with inflation outlook improving.'
+},
+{
+  slug: '/budget-2026',
+  title: 'Union Budget 2026-27: Key Highlights and Tax Changes Explained',
+  date: 'August 7, 2026',
+  category: 'Budget',
+  excerpt: 'New Income Tax Act effective April 1, 2026, capex push to ₹12.2 lakh crore, and major changes for taxpayers.'
+},
+{
+  slug: '/moodys-forecast',
+  title: "Moody's Lowers India's 2026 GDP Growth Forecast to 6%",
+  date: 'August 7, 2026',
+  category: 'Economy',
+  excerpt: 'Rating agency cites weaker private consumption, slower investments, and high energy costs as headwinds.'
+},
+{
+  slug: '/income-tax-rules-2026',
+  title: 'New Income Tax Rules 2026: Key Changes for HRA, Capital Gains & More',
+  date: 'August 7, 2026',
+  category: 'Tax Rules',
+  excerpt: 'CBDT notifies Income-tax Rules 2026 effective April 1, 2026, implementing the new Income-tax Act, 2025.'
+},
+{
+  slug: '/health-insurance-guide',
+  title: 'How to Choose the Right Health Insurance Plan in India',
+  date: 'August 7, 2026',
+  category: 'Insurance',
+  excerpt: 'A comprehensive guide to selecting the best health insurance policy for you and your family.'
+},
   ];
 
   // Sort articles by date (newest first)
