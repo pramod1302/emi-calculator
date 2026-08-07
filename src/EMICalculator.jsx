@@ -1,11 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell 
+  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, 
+  PieChart, Pie, Cell, Legend, CartesianGrid, ComposedChart, Line,
+  Area, AreaChart
 } from 'recharts';
 import { 
   FaLandmark, FaPiggyBank, FaBuilding, FaExchangeAlt, FaSun, FaMoon, 
-  FaLightbulb, FaTable, FaChartArea, FaCheckCircle, FaShieldAlt
+  FaLightbulb, FaTable, FaChartArea, FaCheckCircle, FaShieldAlt,
+  FaChartBar, FaChartPie, FaChartLine, FaWallet, FaRupeeSign,
+  FaCalendarAlt, FaPercent, FaClock, FaArrowUp, FaArrowDown
 } from 'react-icons/fa';
 
 // ==========================================
@@ -16,20 +20,40 @@ const CURRENCY_SYMBOLS = {
 };
 
 const LOAN_PRESETS = [
-  { label: '🏡 Home Loan', amount: 5000000, rate: 8.5, tenure: 20 },
-  { label: '🚗 Car Loan', amount: 900000, rate: 9.2, tenure: 5 },
-  { label: '🎓 Personal Loan', amount: 300000, rate: 12.0, tenure: 3 },
+  { label: 'Home Loan', amount: 5000000, rate: 8.5, tenure: 20, icon: '🏠' },
+  { label: 'Car Loan', amount: 900000, rate: 9.2, tenure: 5, icon: '🚗' },
+  { label: 'Personal Loan', amount: 300000, rate: 12.0, tenure: 3, icon: '💳' },
 ];
 
 const SIP_GOALS = [
-  { label: '💰 ₹1 Crore in 15Y', monthly: 20000, rate: 12, tenure: 15 },
-  { label: '🏡 ₹50 Lakh in 10Y', monthly: 22000, rate: 12, tenure: 10 },
-  { label: '🎓 ₹25 Lakh in 7Y', monthly: 20000, rate: 11, tenure: 7 },
+  { label: '1 Crore in 15Y', monthly: 20000, rate: 12, tenure: 15 },
+  { label: '50 Lakh in 10Y', monthly: 22000, rate: 12, tenure: 10 },
+  { label: '25 Lakh in 7Y', monthly: 20000, rate: 11, tenure: 7 },
 ];
+
+const COLORS = ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#f59e0b', '#fbbf24'];
+const PIE_COLORS = ['#2563eb', '#f59e0b'];
+
+const CustomTooltip = ({ active, payload, label, formatter }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg p-3 text-xs">
+        <p className="font-bold text-slate-800 dark:text-white mb-1">{label}</p>
+        {payload.map((entry, index) => (
+          <p key={index} style={{ color: entry.color }} className="flex justify-between gap-4">
+            <span>{entry.name}:</span>
+            <span className="font-bold">{formatter ? formatter(entry.value) : entry.value}</span>
+          </p>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
 
 export default function TruyonFinanceDashboard() {
   const [darkMode, setDarkMode] = useState(false);
-  const [activeTab, setActiveTab] = useState('emi'); // 'emi' | 'sip' | 'fd' | 'compare'
+  const [activeTab, setActiveTab] = useState('emi');
   const [currency, setCurrency] = useState('INR');
 
   const symbol = CURRENCY_SYMBOLS[currency] || '₹';
@@ -55,7 +79,6 @@ export default function TruyonFinanceDashboard() {
               alt="Truyon" 
               className="h-10 w-10 sm:h-11 sm:w-11 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 object-cover"
               onError={(e) => {
-                // Fallback icon if /T.png is not found in public folder
                 e.target.style.display = 'none';
                 e.target.nextSibling.style.display = 'flex';
               }}
@@ -137,20 +160,20 @@ export default function TruyonFinanceDashboard() {
 }
 
 // ==========================================
-// 1. EMI CALCULATOR VIEW (WITH TIMELINE BREAKDOWN)
+// 1. EMI CALCULATOR VIEW
 // ==========================================
 function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
   const [amount, setAmount] = useState(5000000);
   const [rate, setRate] = useState(8.5);
   const [tenure, setTenure] = useState(20);
-  const [viewMode, setViewMode] = useState('chart'); // 'chart' | 'table'
+  const [viewMode, setViewMode] = useState('chart');
 
   const metrics = useMemo(() => {
     const P = parseFloat(amount) || 0;
     const r = (parseFloat(rate) || 0) / 12 / 100;
     const n = (parseFloat(tenure) || 0) * 12;
 
-    if (!P || !r || !n) return { emi: 0, totalPayment: 0, totalInterest: 0, breakdown: [] };
+    if (!P || !r || !n) return { emi: 0, totalPayment: 0, totalInterest: 0, breakdown: [], maxPayment: 0 };
 
     const emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const totalPayment = emi * n;
@@ -158,6 +181,7 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
 
     let balance = P;
     const breakdown = [];
+    let maxPayment = 0;
     for (let yr = 1; yr <= tenure; yr++) {
       let yrInterest = 0;
       let yrPrincipal = 0;
@@ -168,38 +192,54 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
         yrPrincipal += mPrincipal;
         balance -= mPrincipal;
       }
+      const total = yrPrincipal + yrInterest;
+      if (total > maxPayment) maxPayment = total;
       breakdown.push({
         year: yr,
-        label: `Year ${yr}`,
+        label: `Yr ${yr}`,
         principal: Math.round(yrPrincipal),
         interest: Math.round(yrInterest),
-        total: Math.round(yrPrincipal + yrInterest),
+        total: Math.round(total),
         balance: Math.max(0, Math.round(balance)),
       });
     }
 
-    return { emi, totalPayment, totalInterest, breakdown };
+    return { emi, totalPayment, totalInterest, breakdown, maxPayment };
   }, [amount, rate, tenure]);
 
   const recommendedIncome = useMemo(() => metrics.emi * 2, [metrics.emi]);
 
+  // Data for the chart
+  const chartData = metrics.breakdown.map(item => ({
+    year: item.label,
+    'Principal Paid': item.principal,
+    'Interest Paid': item.interest,
+    'Remaining Balance': item.balance,
+  }));
+
+  // Pie chart data
+  const pieData = [
+    { name: 'Principal', value: amount },
+    { name: 'Total Interest', value: metrics.totalInterest },
+  ];
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      {/* LEFT: INPUTS WITH FREE TEXT FIELDS & SLIDERS */}
-      <div className="lg:col-span-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 space-y-6 shadow-sm">
+      {/* LEFT: INPUTS */}
+      <div className="lg:col-span-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 space-y-6 shadow-sm">
         <div>
           <h2 className="text-lg font-bold text-slate-800 dark:text-white">Loan Parameters</h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400">Type exact numbers or drag sliders to adjust</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Adjust sliders or type exact numbers</p>
         </div>
 
-        {/* QUICK PRESET CHIPS */}
         <div className="flex flex-wrap gap-2">
           {LOAN_PRESETS.map((p) => (
             <button
               key={p.label}
               onClick={() => { setAmount(p.amount); setRate(p.rate); setTenure(p.tenure); }}
-              className="text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:border-blue-300 transition font-medium"
+              className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:border-blue-300 transition font-medium"
             >
+              <span>{p.icon}</span>
               {p.label}
             </button>
           ))}
@@ -236,76 +276,118 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
           formatted={`${tenure} Yrs`}
         />
 
-        {/* AFFORDABILITY INSIGHT */}
         <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/50 flex items-start gap-3">
           <FaLightbulb className="text-blue-600 dark:text-blue-400 text-lg mt-0.5 shrink-0" />
           <div className="text-xs text-blue-900 dark:text-blue-200 leading-relaxed">
-            <span className="font-semibold">Affordability Tip:</span> To comfortably pay an EMI of <span className="font-bold">{formatCurrency(metrics.emi)}</span>, your net household income should be at least <span className="font-bold underline">{formatCurrency(recommendedIncome)}/month</span>.
+            <span className="font-semibold">Affordability Tip:</span> For an EMI of <span className="font-bold">{formatCurrency(metrics.emi)}</span>, your monthly income should be at least <span className="font-bold underline">{formatCurrency(recommendedIncome)}</span>.
           </div>
         </div>
       </div>
 
-      {/* RIGHT: RESULTS + AMORTIZATION BREAKDOWN */}
-      <div className="lg:col-span-6 space-y-6">
-        {/* SUMMARY HERO CARD */}
-        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-2xl p-6 shadow-xl space-y-4">
-          <span className="text-xs font-semibold uppercase tracking-wider opacity-80">Monthly EMI Payment</span>
-          <div className="text-3xl sm:text-4xl font-extrabold tracking-tight">{formatCurrency(metrics.emi)}</div>
+      {/* RIGHT: RESULTS */}
+      <div className="lg:col-span-7 space-y-6">
+        {/* Summary Cards */}
+        <div className="grid grid-cols-3 gap-3">
+          <div className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-2xl p-4 shadow-xl">
+            <p className="text-xs opacity-80">Monthly EMI</p>
+            <p className="text-xl font-bold">{formatCurrency(metrics.emi)}</p>
+          </div>
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm">
+            <p className="text-xs text-slate-500 dark:text-slate-400">Total Payment</p>
+            <p className="text-lg font-bold text-slate-800 dark:text-white">{formatCurrency(metrics.totalPayment)}</p>
+          </div>
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm">
+            <p className="text-xs text-slate-500 dark:text-slate-400">Total Interest</p>
+            <p className="text-lg font-bold text-amber-600 dark:text-amber-400">{formatCurrency(metrics.totalInterest)}</p>
+          </div>
+        </div>
 
-          <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/20">
-            <div>
-              <p className="text-xs opacity-75">Principal Loan</p>
-              <p className="text-sm font-bold">{formatCurrency(amount)}</p>
+        {/* Pie Chart - Principal vs Interest */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+          <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-3">Principal vs Interest Breakdown</h3>
+          <div className="flex items-center gap-6">
+            <div className="h-40 w-40">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={pieData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={45}
+                    outerRadius={65}
+                    paddingAngle={3}
+                    dataKey="value"
+                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    labelLine={{ stroke: darkMode ? '#475569' : '#94a3b8', strokeWidth: 1 }}
+                  >
+                    <Cell fill={PIE_COLORS[0]} />
+                    <Cell fill={PIE_COLORS[1]} />
+                  </Pie>
+                  <Tooltip formatter={(val) => formatCurrency(val)} />
+                </PieChart>
+              </ResponsiveContainer>
             </div>
-            <div>
-              <p className="text-xs opacity-75">Total Interest Payable</p>
-              <p className="text-sm font-bold text-amber-300">{formatCurrency(metrics.totalInterest)}</p>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-full bg-blue-600"></div>
+                <span className="text-sm text-slate-700 dark:text-slate-300">Principal: {((amount / (amount + metrics.totalInterest)) * 100).toFixed(0)}%</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-full bg-amber-500"></div>
+                <span className="text-sm text-slate-700 dark:text-slate-300">Interest: {((metrics.totalInterest / (amount + metrics.totalInterest)) * 100).toFixed(0)}%</span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* TIMELINE OVER TIME (GRAPH VS YEARLY TABLE TOGGLE) */}
+        {/* Graph */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4 shadow-sm">
-          <div className="flex justify-between items-center border-b border-slate-200 dark:border-slate-800 pb-3">
-            <h3 className="text-sm font-bold text-slate-800 dark:text-white">Payment Details Over Time</h3>
-            <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+          <div className="flex justify-between items-center">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white">Payment Breakdown Over Time</h3>
+            <div className="flex gap-1">
               <button
                 onClick={() => setViewMode('chart')}
-                className={`flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-md font-medium transition ${
+                className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg font-medium transition ${
                   viewMode === 'chart' 
-                    ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm' 
-                    : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
                 }`}
               >
-                <FaChartArea /> Chart
+                <FaChartBar /> Chart
               </button>
               <button
                 onClick={() => setViewMode('table')}
-                className={`flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-md font-medium transition ${
+                className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg font-medium transition ${
                   viewMode === 'table' 
-                    ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm' 
-                    : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
                 }`}
               >
-                <FaTable /> Yearly Table
+                <FaTable /> Table
               </button>
             </div>
           </div>
 
           {viewMode === 'chart' ? (
-            <div className="h-56 w-full">
+            <div className="h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={metrics.breakdown}>
-                  <XAxis dataKey="label" stroke={darkMode ? '#64748b' : '#94a3b8'} fontSize={10} />
-                  <YAxis stroke={darkMode ? '#64748b' : '#94a3b8'} fontSize={10} tickFormatter={(v) => `${v / 1000}k`} />
-                  <Tooltip formatter={(value) => formatCurrency(value)} />
-                  <Area type="monotone" dataKey="principal" stackId="1" stroke="#2563eb" fill="#3b82f6" name="Principal Paid" />
-                  <Area type="monotone" dataKey="interest" stackId="1" stroke="#f59e0b" fill="#fbbf24" name="Interest Paid" />
-                </AreaChart>
+                <BarChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? '#334155' : '#e2e8f0'} />
+                  <XAxis dataKey="year" stroke={darkMode ? '#64748b' : '#94a3b8'} fontSize={11} />
+                  <YAxis 
+                    stroke={darkMode ? '#64748b' : '#94a3b8'} 
+                    fontSize={11}
+                    tickFormatter={(v) => `${v / 1000}k`}
+                  />
+                  <Tooltip content={<CustomTooltip formatter={formatCurrency} />} />
+                  <Bar dataKey="Principal Paid" stackId="a" fill="#3b82f6" />
+                  <Bar dataKey="Interest Paid" stackId="a" fill="#f59e0b" />
+                  <Line type="monotone" dataKey="Remaining Balance" stroke="#10b981" strokeWidth={2} dot={false} />
+                </BarChart>
               </ResponsiveContainer>
             </div>
           ) : (
-            <div className="max-h-60 overflow-y-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="max-h-64 overflow-y-auto rounded-xl border border-slate-200 dark:border-slate-800">
               <table className="w-full text-left text-xs">
                 <thead className="bg-slate-100 dark:bg-slate-800/80 sticky top-0 text-slate-600 dark:text-slate-300 font-semibold border-b border-slate-200 dark:border-slate-700">
                   <tr>
@@ -318,7 +400,7 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
                   {metrics.breakdown.map((row) => (
                     <tr key={row.year} className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
-                      <td className="py-2 px-3 font-medium">Yr {row.year}</td>
+                      <td className="py-2 px-3 font-medium">{row.year}</td>
                       <td className="py-2 px-3 text-right">{formatCurrency(row.principal)}</td>
                       <td className="py-2 px-3 text-right text-amber-600 dark:text-amber-400">{formatCurrency(row.interest)}</td>
                       <td className="py-2 px-3 text-right font-medium">{formatCurrency(row.balance)}</td>
@@ -358,7 +440,7 @@ function SIPCalculatorView({ formatCurrency, symbol, darkMode }) {
       const months = yr * 12;
       const fvYear = P * ((Math.pow(1 + i, months) - 1) / i) * (1 + i);
       growthData.push({
-        label: `Yr ${yr}`,
+        year: `Yr ${yr}`,
         Invested: Math.round(P * months),
         Wealth: Math.round(fvYear),
       });
@@ -367,12 +449,21 @@ function SIPCalculatorView({ formatCurrency, symbol, darkMode }) {
     return { futureValue, invested, wealthGained, growthData };
   }, [monthly, rate, tenure]);
 
+  // Calculate profit percentage
+  const profitPercent = metrics.invested > 0 ? ((metrics.wealthGained / metrics.invested) * 100).toFixed(0) : 0;
+
+  // Pie chart data
+  const pieData = [
+    { name: 'Your Investment', value: metrics.invested },
+    { name: 'Returns Gained', value: metrics.wealthGained },
+  ];
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      <div className="lg:col-span-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 space-y-6 shadow-sm">
+      <div className="lg:col-span-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 space-y-6 shadow-sm">
         <div>
-          <h2 className="text-lg font-bold text-slate-800 dark:text-white">SIP Investment Parameters</h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400">Specify your monthly savings goals</p>
+          <h2 className="text-lg font-bold text-slate-800 dark:text-white">SIP Parameters</h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Plan your monthly savings</p>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -419,35 +510,90 @@ function SIPCalculatorView({ formatCurrency, symbol, darkMode }) {
         />
       </div>
 
-      <div className="lg:col-span-6 space-y-6">
-        <div className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-2xl p-6 shadow-xl space-y-4">
-          <span className="text-xs font-semibold uppercase tracking-wider opacity-80">Expected Corpus Value</span>
-          <div className="text-3xl sm:text-4xl font-extrabold tracking-tight">{formatCurrency(metrics.futureValue)}</div>
+      <div className="lg:col-span-7 space-y-6">
+        {/* Summary Cards */}
+        <div className="grid grid-cols-3 gap-3">
+          <div className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-2xl p-4 shadow-xl">
+            <p className="text-xs opacity-80">Future Value</p>
+            <p className="text-xl font-bold">{formatCurrency(metrics.futureValue)}</p>
+          </div>
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm">
+            <p className="text-xs text-slate-500 dark:text-slate-400">Your Investment</p>
+            <p className="text-lg font-bold text-slate-800 dark:text-white">{formatCurrency(metrics.invested)}</p>
+          </div>
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm">
+            <p className="text-xs text-slate-500 dark:text-slate-400">Total Returns</p>
+            <p className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{formatCurrency(metrics.wealthGained)}</p>
+            <p className="text-xs text-emerald-500">+{profitPercent}% growth</p>
+          </div>
+        </div>
 
-          <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/20">
-            <div>
-              <p className="text-xs opacity-75">Invested Outlay</p>
-              <p className="text-sm font-bold">{formatCurrency(metrics.invested)}</p>
+        {/* Pie Chart */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+          <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-3">Your Investment vs Returns</h3>
+          <div className="flex items-center gap-6">
+            <div className="h-40 w-40">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={pieData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={45}
+                    outerRadius={65}
+                    paddingAngle={3}
+                    dataKey="value"
+                    label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
+                    labelLine={{ stroke: darkMode ? '#475569' : '#94a3b8', strokeWidth: 1 }}
+                  >
+                    <Cell fill="#3b82f6" />
+                    <Cell fill="#10b981" />
+                  </Pie>
+                  <Tooltip formatter={(val) => formatCurrency(val)} />
+                </PieChart>
+              </ResponsiveContainer>
             </div>
-            <div>
-              <p className="text-xs opacity-75">Estimated Wealth Gain</p>
-              <p className="text-sm font-bold text-emerald-200">{formatCurrency(metrics.wealthGained)}</p>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-full bg-blue-500"></div>
+                <span className="text-sm text-slate-700 dark:text-slate-300">Your Investment</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-full bg-emerald-500"></div>
+                <span className="text-sm text-slate-700 dark:text-slate-300">Returns Gained</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4 shadow-sm">
-          <h3 className="text-sm font-bold text-slate-800 dark:text-white">Compounding Growth Trajectory</h3>
+        {/* Growth Chart */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+          <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-3">Wealth Growth Over Time</h3>
           <div className="h-56 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={metrics.growthData}>
-                <XAxis dataKey="label" stroke={darkMode ? '#64748b' : '#94a3b8'} fontSize={10} />
-                <YAxis stroke={darkMode ? '#64748b' : '#94a3b8'} fontSize={10} tickFormatter={(v) => `${v / 1000}k`} />
-                <Tooltip formatter={(val) => formatCurrency(val)} />
-                <Area type="monotone" dataKey="Wealth" stroke="#10b981" fill="#34d399" fillOpacity={0.4} name="Total Wealth" />
-                <Area type="monotone" dataKey="Invested" stroke="#64748b" fill="#94a3b8" fillOpacity={0.2} name="Total Outlay" />
-              </AreaChart>
+              <ComposedChart data={metrics.growthData} margin={{ top: 10, right: 10, left: 0, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? '#334155' : '#e2e8f0'} />
+                <XAxis dataKey="year" stroke={darkMode ? '#64748b' : '#94a3b8'} fontSize={11} />
+                <YAxis 
+                  stroke={darkMode ? '#64748b' : '#94a3b8'} 
+                  fontSize={11}
+                  tickFormatter={(v) => `${v / 1000}k`}
+                />
+                <Tooltip content={<CustomTooltip formatter={formatCurrency} />} />
+                <Area type="monotone" dataKey="Invested" fill="#3b82f6" stroke="#2563eb" fillOpacity={0.3} />
+                <Area type="monotone" dataKey="Wealth" fill="#10b981" stroke="#059669" fillOpacity={0.3} />
+              </ComposedChart>
             </ResponsiveContainer>
+          </div>
+          <div className="flex justify-center gap-6 mt-2">
+            <span className="flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-400">
+              <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+              Your Investment
+            </span>
+            <span className="flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-400">
+              <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
+              Wealth Growth
+            </span>
           </div>
         </div>
       </div>
@@ -478,12 +624,14 @@ function FDCalculatorView({ formatCurrency, symbol, darkMode }) {
 
   const pieData = [
     { name: 'Principal', value: deposit },
-    { name: 'Interest', value: metrics.interest },
+    { name: 'Total Interest', value: metrics.interest },
   ];
+
+  const interestPercent = metrics.maturity > 0 ? ((metrics.interest / metrics.maturity) * 100).toFixed(0) : 0;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      <div className="lg:col-span-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 space-y-6 shadow-sm">
+      <div className="lg:col-span-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 space-y-6 shadow-sm">
         <div>
           <h2 className="text-lg font-bold text-slate-800 dark:text-white">Fixed Deposit Parameters</h2>
           <p className="text-xs text-slate-500 dark:text-slate-400">Calculate guaranteed lump-sum returns</p>
@@ -519,41 +667,95 @@ function FDCalculatorView({ formatCurrency, symbol, darkMode }) {
           onChange={setTenure}
           formatted={`${tenure} Yrs`}
         />
+
+        <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50">
+          <p className="text-xs text-amber-800 dark:text-amber-300">
+            <span className="font-bold">📌 Note:</span> FD returns are guaranteed. Your principal of {' '}
+            <span className="font-bold">{formatCurrency(deposit)}</span> is fully protected.
+          </p>
+        </div>
       </div>
 
-      <div className="lg:col-span-6 space-y-6">
-        <div className="bg-gradient-to-br from-amber-600 to-orange-700 text-white rounded-2xl p-6 shadow-xl space-y-4">
-          <span className="text-xs font-semibold uppercase tracking-wider opacity-80">Guaranteed Maturity Value</span>
-          <div className="text-3xl sm:text-4xl font-extrabold tracking-tight">{formatCurrency(metrics.maturity)}</div>
+      <div className="lg:col-span-7 space-y-6">
+        {/* Summary Cards */}
+        <div className="grid grid-cols-3 gap-3">
+          <div className="bg-gradient-to-br from-amber-600 to-orange-700 text-white rounded-2xl p-4 shadow-xl">
+            <p className="text-xs opacity-80">Maturity Value</p>
+            <p className="text-xl font-bold">{formatCurrency(metrics.maturity)}</p>
+          </div>
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm">
+            <p className="text-xs text-slate-500 dark:text-slate-400">Principal</p>
+            <p className="text-lg font-bold text-slate-800 dark:text-white">{formatCurrency(deposit)}</p>
+          </div>
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm">
+            <p className="text-xs text-slate-500 dark:text-slate-400">Interest Earned</p>
+            <p className="text-lg font-bold text-amber-600 dark:text-amber-400">{formatCurrency(metrics.interest)}</p>
+          </div>
+        </div>
 
-          <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/20">
-            <div>
-              <p className="text-xs opacity-75">Principal Invested</p>
-              <p className="text-sm font-bold">{formatCurrency(deposit)}</p>
+        {/* Pie Chart */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+          <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-3">Your Returns Breakdown</h3>
+          <div className="flex items-center gap-6">
+            <div className="h-40 w-40">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={pieData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={45}
+                    outerRadius={65}
+                    paddingAngle={3}
+                    dataKey="value"
+                    label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
+                    labelLine={{ stroke: darkMode ? '#475569' : '#94a3b8', strokeWidth: 1 }}
+                  >
+                    <Cell fill="#3b82f6" />
+                    <Cell fill="#f59e0b" />
+                  </Pie>
+                  <Tooltip formatter={(val) => formatCurrency(val)} />
+                </PieChart>
+              </ResponsiveContainer>
             </div>
-            <div>
-              <p className="text-xs opacity-75">Total Interest Earned</p>
-              <p className="text-sm font-bold text-amber-200">{formatCurrency(metrics.interest)}</p>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-full bg-blue-500"></div>
+                <span className="text-sm text-slate-700 dark:text-slate-300">Principal: {((deposit / (deposit + metrics.interest)) * 100).toFixed(0)}%</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-full bg-amber-500"></div>
+                <span className="text-sm text-slate-700 dark:text-slate-300">Interest: {interestPercent}%</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex items-center justify-between shadow-sm">
-          <div>
-            <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-1">Return Ratio</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              Interest makes up <span className="font-bold text-amber-500">{((metrics.interest / (metrics.maturity || 1)) * 100).toFixed(1)}%</span> of total maturity value.
-            </p>
+        {/* Simple Growth Display */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+          <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-2">How Your Money Grows</h3>
+          <div className="flex items-center gap-4">
+            <div className="flex-1">
+              <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
+                <span>Principal</span>
+                <span className="font-bold text-blue-600 dark:text-blue-400">{formatCurrency(deposit)}</span>
+              </div>
+              <div className="w-full h-3 bg-slate-200 dark:bg-slate-700 rounded-full mt-1 overflow-hidden">
+                <div className="h-full bg-blue-500 rounded-full" style={{ width: `${(deposit / metrics.maturity) * 100}%` }}></div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
+                <span>Interest</span>
+                <span className="font-bold text-amber-600 dark:text-amber-400">{formatCurrency(metrics.interest)}</span>
+              </div>
+              <div className="w-full h-3 bg-slate-200 dark:bg-slate-700 rounded-full mt-1 overflow-hidden">
+                <div className="h-full bg-amber-500 rounded-full" style={{ width: `${(metrics.interest / metrics.maturity) * 100}%` }}></div>
+              </div>
+            </div>
           </div>
-          <div className="h-24 w-24">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie data={pieData} dataKey="value" innerRadius={22} outerRadius={38} paddingAngle={3}>
-                  <Cell fill={darkMode ? '#475569' : '#cbd5e1'} />
-                  <Cell fill="#f59e0b" />
-                </Pie>
-              </PieChart>
-            </ResponsiveContainer>
+          <div className="text-center text-xs text-slate-500 dark:text-slate-400 mt-3">
+            Total maturity: <span className="font-bold">{formatCurrency(metrics.maturity)}</span>
           </div>
         </div>
       </div>
@@ -589,42 +791,89 @@ function CompareCalculatorView({ formatCurrency, symbol }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* LOAN A */}
         <div className="bg-white dark:bg-slate-900 border-2 border-blue-500/40 rounded-2xl p-5 space-y-4 shadow-sm">
-          <h3 className="font-bold text-blue-600 dark:text-blue-400">Loan Option A</h3>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400 text-sm font-bold">
+              A
+            </div>
+            <h3 className="font-bold text-blue-600 dark:text-blue-400">Loan Option A</h3>
+          </div>
           <div className="space-y-3">
             <FreeInput label="Amount" value={loan1.amount} onChange={(v) => setLoan1({ ...loan1, amount: v })} />
             <FreeInput label="Interest Rate (%)" value={loan1.rate} onChange={(v) => setLoan1({ ...loan1, rate: v })} />
             <FreeInput label="Tenure (Years)" value={loan1.tenure} onChange={(v) => setLoan1({ ...loan1, tenure: v })} />
           </div>
-          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-1 text-sm text-slate-700 dark:text-slate-300">
-            <div className="flex justify-between"><span>Monthly EMI:</span><span className="font-bold">{formatCurrency(res1.emi)}</span></div>
-            <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400"><span>Total Interest:</span><span>{formatCurrency(res1.interest)}</span></div>
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-1 text-sm">
+            <div className="flex justify-between"><span className="text-slate-500 dark:text-slate-400">Monthly EMI:</span><span className="font-bold text-slate-800 dark:text-white">{formatCurrency(res1.emi)}</span></div>
+            <div className="flex justify-between"><span className="text-slate-500 dark:text-slate-400">Total Payment:</span><span className="text-slate-800 dark:text-white">{formatCurrency(res1.total)}</span></div>
+            <div className="flex justify-between"><span className="text-slate-500 dark:text-slate-400">Total Interest:</span><span className="text-amber-600 dark:text-amber-400">{formatCurrency(res1.interest)}</span></div>
           </div>
         </div>
 
         {/* LOAN B */}
         <div className="bg-white dark:bg-slate-900 border-2 border-purple-500/40 rounded-2xl p-5 space-y-4 shadow-sm">
-          <h3 className="font-bold text-purple-600 dark:text-purple-400">Loan Option B</h3>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-purple-600 dark:text-purple-400 text-sm font-bold">
+              B
+            </div>
+            <h3 className="font-bold text-purple-600 dark:text-purple-400">Loan Option B</h3>
+          </div>
           <div className="space-y-3">
             <FreeInput label="Amount" value={loan2.amount} onChange={(v) => setLoan2({ ...loan2, amount: v })} />
             <FreeInput label="Interest Rate (%)" value={loan2.rate} onChange={(v) => setLoan2({ ...loan2, rate: v })} />
             <FreeInput label="Tenure (Years)" value={loan2.tenure} onChange={(v) => setLoan2({ ...loan2, tenure: v })} />
           </div>
-          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-1 text-sm text-slate-700 dark:text-slate-300">
-            <div className="flex justify-between"><span>Monthly EMI:</span><span className="font-bold">{formatCurrency(res2.emi)}</span></div>
-            <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400"><span>Total Interest:</span><span>{formatCurrency(res2.interest)}</span></div>
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-1 text-sm">
+            <div className="flex justify-between"><span className="text-slate-500 dark:text-slate-400">Monthly EMI:</span><span className="font-bold text-slate-800 dark:text-white">{formatCurrency(res2.emi)}</span></div>
+            <div className="flex justify-between"><span className="text-slate-500 dark:text-slate-400">Total Payment:</span><span className="text-slate-800 dark:text-white">{formatCurrency(res2.total)}</span></div>
+            <div className="flex justify-between"><span className="text-slate-500 dark:text-slate-400">Total Interest:</span><span className="text-amber-600 dark:text-amber-400">{formatCurrency(res2.interest)}</span></div>
           </div>
         </div>
       </div>
 
-      {/* COMPARISON VERDICT */}
-      <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
-        <div className="flex items-center gap-3">
-          <FaCheckCircle className="text-2xl text-emerald-200 shrink-0" />
-          <div>
-            <h4 className="font-bold">{winner} is the smarter choice!</h4>
-            <p className="text-xs text-emerald-100">
-              Saves you <span className="font-bold">{formatCurrency(emiDiff)}</span>/month and <span className="font-bold">{formatCurrency(totalDiff)}</span> in total interest payout.
-            </p>
+      {/* Comparison Results */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-center shadow-sm">
+          <p className="text-xs text-slate-500 dark:text-slate-400">EMI Difference</p>
+          <p className="text-lg font-bold text-slate-800 dark:text-white">{formatCurrency(emiDiff)}/month</p>
+        </div>
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-center shadow-sm">
+          <p className="text-xs text-slate-500 dark:text-slate-400">Total Interest Difference</p>
+          <p className="text-lg font-bold text-slate-800 dark:text-white">{formatCurrency(totalDiff)}</p>
+        </div>
+        <div className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-2xl p-4 text-center shadow-xl">
+          <p className="text-xs opacity-80">Best Choice</p>
+          <p className="text-lg font-bold">{winner}</p>
+          <p className="text-xs opacity-80">Saves you money</p>
+        </div>
+      </div>
+
+      {/* Visual Comparison Bar */}
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+        <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-3">Total Payment Comparison</h3>
+        <div className="flex items-center gap-4">
+          <div className="flex-1">
+            <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
+              <span>Option A</span>
+              <span>{formatCurrency(res1.total)}</span>
+            </div>
+            <div className="w-full h-4 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-blue-500 rounded-full transition-all"
+                style={{ width: `${(res1.total / Math.max(res1.total, res2.total)) * 100}%` }}
+              ></div>
+            </div>
+          </div>
+          <div className="flex-1">
+            <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
+              <span>Option B</span>
+              <span>{formatCurrency(res2.total)}</span>
+            </div>
+            <div className="w-full h-4 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-purple-500 rounded-full transition-all"
+                style={{ width: `${(res2.total / Math.max(res1.total, res2.total)) * 100}%` }}
+              ></div>
+            </div>
           </div>
         </div>
       </div>
@@ -633,15 +882,13 @@ function CompareCalculatorView({ formatCurrency, symbol }) {
 }
 
 // ==========================================
-// REUSABLE HYBRID INPUT (FREE TEXT + RANGE SLIDER)
+// REUSABLE HYBRID INPUT
 // ==========================================
 function HybridInput({ label, symbol, value, min, max, step, onChange, formatted }) {
   return (
     <div className="space-y-2">
       <div className="flex justify-between items-center text-sm gap-2">
         <label className="font-medium text-slate-700 dark:text-slate-300">{label}</label>
-        
-        {/* FREE NUMBER INPUT FIELD */}
         <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1">
           {symbol && <span className="text-xs text-slate-500">{symbol}</span>}
           <input
@@ -655,8 +902,6 @@ function HybridInput({ label, symbol, value, min, max, step, onChange, formatted
           />
         </div>
       </div>
-
-      {/* RANGE SLIDER */}
       <input
         type="range"
         min={min}
