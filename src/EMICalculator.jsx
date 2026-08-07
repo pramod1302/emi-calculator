@@ -9,7 +9,8 @@ import {
   FaLandmark, FaPiggyBank, FaBuilding, FaExchangeAlt, FaSun, FaMoon, 
   FaLightbulb, FaTable, FaChartArea, FaCheckCircle, FaShieldAlt,
   FaChartBar, FaChartPie, FaChartLine, FaWallet, FaRupeeSign,
-  FaCalendarAlt, FaPercent, FaClock, FaArrowUp, FaArrowDown
+  FaCalendarAlt, FaPercent, FaClock, FaArrowUp, FaArrowDown,
+  FaNewspaper
 } from 'react-icons/fa';
 
 // ==========================================
@@ -95,6 +96,14 @@ export default function TruyonFinanceDashboard() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
+            {/* Blog Link in Header */}
+            <a 
+              href="/blog" 
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition border border-blue-200 dark:border-blue-800"
+            >
+              <FaNewspaper className="text-xs" />
+              <span className="hidden sm:inline">Blog</span>
+            </a>
             <select
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
@@ -209,7 +218,6 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
 
   const recommendedIncome = useMemo(() => metrics.emi * 2, [metrics.emi]);
 
-  // Data for the chart
   const chartData = metrics.breakdown.map(item => ({
     year: item.label,
     'Principal Paid': item.principal,
@@ -217,7 +225,6 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
     'Remaining Balance': item.balance,
   }));
 
-  // Pie chart data
   const pieData = [
     { name: 'Principal', value: amount },
     { name: 'Total Interest', value: metrics.totalInterest },
@@ -225,7 +232,6 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      {/* LEFT: INPUTS */}
       <div className="lg:col-span-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 space-y-6 shadow-sm">
         <div>
           <h2 className="text-lg font-bold text-slate-800 dark:text-white">Loan Parameters</h2>
@@ -284,9 +290,7 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
         </div>
       </div>
 
-      {/* RIGHT: RESULTS */}
       <div className="lg:col-span-7 space-y-6">
-        {/* Summary Cards */}
         <div className="grid grid-cols-3 gap-3">
           <div className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-2xl p-4 shadow-xl">
             <p className="text-xs opacity-80">Monthly EMI</p>
@@ -302,7 +306,6 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
           </div>
         </div>
 
-        {/* Pie Chart - Principal vs Interest */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
           <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-3">Principal vs Interest Breakdown</h3>
           <div className="flex items-center gap-6">
@@ -340,7 +343,6 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
           </div>
         </div>
 
-        {/* Graph */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4 shadow-sm">
           <div className="flex justify-between items-center">
             <h3 className="text-sm font-bold text-slate-800 dark:text-white">Payment Breakdown Over Time</h3>
@@ -449,10 +451,8 @@ function SIPCalculatorView({ formatCurrency, symbol, darkMode }) {
     return { futureValue, invested, wealthGained, growthData };
   }, [monthly, rate, tenure]);
 
-  // Calculate profit percentage
   const profitPercent = metrics.invested > 0 ? ((metrics.wealthGained / metrics.invested) * 100).toFixed(0) : 0;
 
-  // Pie chart data
   const pieData = [
     { name: 'Your Investment', value: metrics.invested },
     { name: 'Returns Gained', value: metrics.wealthGained },
@@ -511,7 +511,6 @@ function SIPCalculatorView({ formatCurrency, symbol, darkMode }) {
       </div>
 
       <div className="lg:col-span-7 space-y-6">
-        {/* Summary Cards */}
         <div className="grid grid-cols-3 gap-3">
           <div className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-2xl p-4 shadow-xl">
             <p className="text-xs opacity-80">Future Value</p>
@@ -528,7 +527,6 @@ function SIPCalculatorView({ formatCurrency, symbol, darkMode }) {
           </div>
         </div>
 
-        {/* Pie Chart */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
           <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-3">Your Investment vs Returns</h3>
           <div className="flex items-center gap-6">
@@ -566,7 +564,6 @@ function SIPCalculatorView({ formatCurrency, symbol, darkMode }) {
           </div>
         </div>
 
-        {/* Growth Chart */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
           <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-3">Wealth Growth Over Time</h3>
           <div className="h-56 w-full">
@@ -670,14 +667,13 @@ function FDCalculatorView({ formatCurrency, symbol, darkMode }) {
 
         <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50">
           <p className="text-xs text-amber-800 dark:text-amber-300">
-            <span className="font-bold">📌 Note:</span> FD returns are guaranteed. Your principal of {' '}
+            <span className="font-bold">Note:</span> FD returns are guaranteed. Your principal of {' '}
             <span className="font-bold">{formatCurrency(deposit)}</span> is fully protected.
           </p>
         </div>
       </div>
 
       <div className="lg:col-span-7 space-y-6">
-        {/* Summary Cards */}
         <div className="grid grid-cols-3 gap-3">
           <div className="bg-gradient-to-br from-amber-600 to-orange-700 text-white rounded-2xl p-4 shadow-xl">
             <p className="text-xs opacity-80">Maturity Value</p>
@@ -693,7 +689,6 @@ function FDCalculatorView({ formatCurrency, symbol, darkMode }) {
           </div>
         </div>
 
-        {/* Pie Chart */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
           <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-3">Your Returns Breakdown</h3>
           <div className="flex items-center gap-6">
@@ -731,7 +726,6 @@ function FDCalculatorView({ formatCurrency, symbol, darkMode }) {
           </div>
         </div>
 
-        {/* Simple Growth Display */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
           <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-2">How Your Money Grows</h3>
           <div className="flex items-center gap-4">
@@ -789,7 +783,6 @@ function CompareCalculatorView({ formatCurrency, symbol }) {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* LOAN A */}
         <div className="bg-white dark:bg-slate-900 border-2 border-blue-500/40 rounded-2xl p-5 space-y-4 shadow-sm">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400 text-sm font-bold">
@@ -809,7 +802,6 @@ function CompareCalculatorView({ formatCurrency, symbol }) {
           </div>
         </div>
 
-        {/* LOAN B */}
         <div className="bg-white dark:bg-slate-900 border-2 border-purple-500/40 rounded-2xl p-5 space-y-4 shadow-sm">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-purple-600 dark:text-purple-400 text-sm font-bold">
@@ -830,7 +822,6 @@ function CompareCalculatorView({ formatCurrency, symbol }) {
         </div>
       </div>
 
-      {/* Comparison Results */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-center shadow-sm">
           <p className="text-xs text-slate-500 dark:text-slate-400">EMI Difference</p>
@@ -847,7 +838,6 @@ function CompareCalculatorView({ formatCurrency, symbol }) {
         </div>
       </div>
 
-      {/* Visual Comparison Bar */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
         <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-3">Total Payment Comparison</h3>
         <div className="flex items-center gap-4">
