@@ -187,6 +187,175 @@ function Blog() {
   category: 'Banking & Economy',
   excerpt: 'SBI Research report indicates Indian banks are in a goldilocks period with strong capital adequacy, as credit growth of 18.6% outpaces deposit expansion.'
 },
+{
+  slug: '/varma-bank-dominance-2026',
+  title: 'Gradual End of Bank Dominance in India',
+  date: 'February 9, 2026',
+  category: 'Financial Markets Regulation',
+  excerpt: 'Prof. Jayanth R. Varma explores how household savings shifting from bank deposits to mutual funds and pension funds are gradually ending bank dominance in India.'
+},
+{
+  slug: '/choosing-savings-account-2026',
+  title: 'How to Choose the Right Savings Account for Your Needs?',
+  date: 'June 3, 2026',
+  category: 'Personal Finance',
+  excerpt: 'A comprehensive guide on evaluating savings accounts based on interest rates, minimum balance requirements, fees, and individual profiles.'
+},
+{
+  slug: '/fixed-deposit-guide-2026',
+  title: 'Fixed Deposit (FD) Guide 2026: Rates, Comparison & Benefits',
+  date: 'August 5, 2026',
+  category: 'Investment Guide',
+  excerpt: 'Compare latest fixed deposit interest rates across top banks, explore tax-saving FDs, senior citizen benefits, DICGC insurance coverage, and calculation features.'
+},
+{
+  slug: '/emergency-fund-guide-2026',
+  title: 'What to Consider Before Building an Emergency Fund',
+  date: 'September 25, 2023',
+  category: 'Personal Finance',
+  excerpt: 'Learn why an emergency fund is crucial, how to calculate your target corpus (3-6 months of expenses), and where to invest it safely in liquid funds.'
+},
+{
+  slug: '/no-spend-challenge-2026',
+  title: 'The 7-Day No-Spend Challenge: How to Build Financial Awareness',
+  date: 'September 25, 2023',
+  category: 'Personal Finance',
+  excerpt: 'Transform your money mindset with a 7-day no-spend challenge. A practical guide to resetting spending habits and identifying hidden spending triggers.'
+},
+{
+  slug: '/grocery-savings-guide-2026',
+  title: '6 Smart Ways to Save Money on Your Grocery Shopping',
+  date: 'November 12, 2025',
+  category: 'Budgeting Tips',
+  excerpt: 'Learn how to manage your monthly grocery budget with 6 essential hacks, including shelf scanning, avoiding bundle traps, and the cash payment rule.'
+},
+{
+  slug: '/invest-or-repay-debts-2026',
+  title: 'Should You Invest or Repay Your Debts?',
+  date: 'August 8, 2026',
+  category: 'Personal Finance',
+  excerpt: 'Weigh the pros and cons of paying off high-interest debts versus investing. Explore strategies for credit cards, emergency funds, and mortgages.'
+},
+{
+  slug: '/holiday-overspending-recovery-2026',
+  title: 'If You’ve Already Overspent This Season: How To Recover Without Shame',
+  date: 'December 12, 2025',
+  category: 'Financial Mindset & Wellness',
+  excerpt: 'Practical strategies to overcome holiday overspending, banish financial shame, organize BNPL bills, and build a healthy financial mindset.'
+},
+{
+  slug: '/invisible-price-tag-2026',
+  title: 'The Invisible Price Tag: How Time Shapes Our Spending Choices',
+  date: 'November 9, 2025',
+  category: 'Behavioural Finance',
+  excerpt: 'Explore the money psychology paradox behind paying for instant convenience while procrastinating on critical financial tasks like KYC and SIP setups.'
+},
+{
+  slug: '/hidden-cost-delaying-investments-2026',
+  title: 'Hidden Cost of Delaying Investments: Starting SIPs Late Can Kill Crores From Your Portfolio',
+  date: 'April 18, 2026',
+  category: 'Mutual Funds & SIP',
+  excerpt: 'Explore why starting mutual fund SIPs early beats investing larger sums later. Learn how time, compounding, and rupee-cost averaging drive wealth creation.'
+},
+{
+  slug: '/start-sip-500-per-month-2026',
+  title: 'Start SIP With ₹500 Per Month: Build Long-Term Wealth Easily',
+  date: 'August 8, 2026',
+  category: 'Mutual Funds & SIP',
+  excerpt: 'Learn how to start a mutual fund SIP with just ₹500 a month, cultivate financial discipline, and leverage rupee-cost averaging.'
+},
+{
+  slug: '/sip-vs-fd-guide-2026',
+  title: 'SIP vs FD: Which Investment is Better for You?',
+  date: 'August 8, 2026',
+  category: 'Investment Guide',
+  excerpt: 'Compare Systematic Investment Plans (SIP) and Fixed Deposits (FD) to determine how to balance guaranteed safety with long-term wealth creation.'
+},
+{
+  slug: '/asset-allocation-guide-2026',
+  title: 'Understanding Asset Allocation: Why You Need Debt and Gold in Your Portfolio',
+  date: 'July 26, 2026',
+  category: 'Investment Strategy',
+  excerpt: 'A comprehensive guide on balancing equities, debt, and gold to manage portfolio risk, beat inflation, and adapt to different life stages.'
+},
+{
+  slug: '/power-of-compounding-2026',
+  title: 'The Power of Compounding: Why Starting Early Wins',
+  date: 'September 1, 2025',
+  category: 'Wealth Creation',
+  excerpt: 'Understand how compound interest turns small, regular investments into significant wealth over time. See why starting two years earlier beats starting with 33% more money.'
+},
+{
+  slug: '/mutual-funds-vs-stocks-2026',
+  title: 'Mutual Funds vs. Direct Stocks: Which Should You Choose?',
+  date: 'August 8, 2026',
+  category: 'Investment Strategy',
+  excerpt: 'A detailed comparison of mutual funds and direct stocks to help you balance professional management against individual portfolio control.'
+},
+
+{
+  slug: '/sip-guide-2026',
+  title: 'Systematic Investment Plan (SIP): The Path to Disciplined Wealth Creation',
+  date: 'August 8, 2026',
+  category: 'Mutual Funds',
+  excerpt: 'Learn the mechanics of SIPs, the power of rupee-cost averaging, and how the 7-5-3-1 investing rule can help you build long-term wealth.'
+},
+{
+  slug: '/mutual-fund-factsheet-guide-2026',
+  title: 'How to Read a Mutual Fund Factsheet Like a Pro',
+  date: 'August 8, 2026',
+  category: 'Investment Education',
+  excerpt: 'Learn how to decode mutual fund factsheets, covering key ratios like Beta, Sharpe, expense ratios, and understanding riskometers for smarter investing.'
+},
+{
+  slug: '/ten-rupee-weekly-challenge-2026',
+  title: 'The ₹10 Weekly Investment Challenge: How Small Amounts Add Up',
+  date: 'August 8, 2026',
+  category: 'Wealth Creation',
+  excerpt: 'A micro-investing strategy to help you build financial discipline. Learn how the ₹10 weekly challenge can serve as a stepping stone to your first SIP.'
+},
+{
+  slug: '/top-sip-funds-2026',
+  title: 'Top 10 Mutual Funds for SIP in 2026',
+  date: 'August 8, 2026',
+  category: 'Mutual Funds',
+  excerpt: 'A comprehensive guide on top-performing mutual funds for SIP investment in 2026, covering large-cap, mid-cap, and sectoral fund strategies.'
+},
+{
+  slug: '/save-home-loan-interest-2026',
+  title: '6 Effective Strategies to Save ₹5 Lakh on Home Loan Interest',
+  date: 'May 8, 2026',
+  category: 'Home Loan',
+  excerpt: 'Learn 6 proven ways to minimize your home loan interest costs, including improving your credit score, negotiating with lenders, and leveraging balance transfers.'
+},
+{
+  slug: '/home-loan-tenure-guide-2026',
+  title: 'What is the Ideal Home Loan Tenure? 10, 20, or 30 Years?',
+  date: 'March 28, 2026',
+  category: 'Home Loan',
+  excerpt: 'Understand how home loan tenure affects your total interest payout and EMI. Learn the 20-year "sweet spot" and how to calculate affordability.'
+},
+{
+  slug: '/term-insurance-vs-ulip-2026',
+  title: 'Term Insurance vs. ULIP: Which Is Better for You?',
+  date: 'October 15, 2025',
+  category: 'Life Insurance',
+  excerpt: 'A clear comparison of term insurance and ULIPs to help you decide between pure protection and investment-linked life insurance.'
+},
+{
+  slug: '/claim-settlement-ratio-guide-2026',
+  title: 'Understanding Claim Settlement Ratio: Why It Matters',
+  date: 'March 28, 2023',
+  category: 'Life Insurance',
+  excerpt: 'Learn what Claim Settlement Ratio (CSR) means, how to calculate it, its limitations, and practical steps to avoid claim rejections.'
+},
+{
+  slug: '/top-health-insurance-2026',
+  title: 'Top 5 Health Insurance Companies in India (2026 Comparison)',
+  date: 'August 8, 2026',
+  category: 'Health Insurance',
+  excerpt: 'Explore Ditto’s top-rated health insurance plans for 2026, featuring HDFC Ergo Optima Secure+, Care Supreme, and Aditya Birla Activ One.'
+},
   ];
 
   // Sort articles by date (newest first)

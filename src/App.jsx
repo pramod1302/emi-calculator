@@ -30,6 +30,30 @@ import HomeLoanBalanceTransfer2026 from './pages/HomeLoanBalanceTransfer2026';
 import StandingDepositFacility2026 from './pages/StandingDepositFacility2026';
 import NbfcVsBankPersonalLoan2026 from './pages/NbfcVsBankPersonalLoan2026';
 import SbiResearchCreditGrowth2026 from './pages/SbiResearchCreditGrowth2026';
+import VarmaBankDominance2026 from './pages/VarmaBankDominance2026';
+import ChoosingSavingsAccount2026 from './pages/ChoosingSavingsAccount2026';
+import FixedDepositGuide2026 from './pages/FixedDepositGuide2026';
+import EmergencyFundGuide2026 from './pages/EmergencyFundGuide2026';
+import NoSpendChallenge2026 from './pages/NoSpendChallenge2026';
+import GrocerySavingsGuide2026 from './pages/GrocerySavingsGuide2026';
+import InvestOrRepayDebts2026 from './pages/InvestOrRepayDebts2026';
+import HolidayOverspendingRecovery2026 from './pages/HolidayOverspendingRecovery2026';
+import InvisiblePriceTag2026 from './pages/InvisiblePriceTag2026';
+import HiddenCostDelayingInvestments2026 from './pages/HiddenCostDelayingInvestments2026';
+import StartSip500PerMonth2026 from './pages/StartSip500PerMonth2026';
+import SipVsFdGuide2026 from './pages/SipVsFdGuide2026';
+import AssetAllocationGuide2026 from './pages/AssetAllocationGuide2026';
+import PowerOfCompoundingGuide2026 from './pages/PowerOfCompoundingGuide2026';
+import MutualFundsVsStocks2026 from './pages/MutualFundsVsStocks2026';
+import SipGuide2026 from './pages/SipGuide2026';
+import MutualFundFactsheetGuide2026 from './pages/MutualFundFactsheetGuide2026';
+import TenRupeeWeeklyChallenge2026 from './pages/TenRupeeWeeklyChallenge2026';
+import TopSipFunds2026 from './pages/TopSipFunds2026';
+import SaveHomeLoanInterest2026 from './pages/SaveHomeLoanInterest2026';
+import HomeLoanTenureGuide2026 from './pages/HomeLoanTenureGuide2026';
+import TermInsuranceVsUlip2026 from './pages/TermInsuranceVsUlip2026';
+import ClaimSettlementRatioGuide2026 from './pages/ClaimSettlementRatioGuide2026';
+import TopHealthInsurance2026 from './pages/TopHealthInsurance2026';
 import { initializeAds } from './components/AdUnits';
 
 function App() {
@@ -146,6 +170,78 @@ if (path === '/nbfc-vs-bank-personal-loan-2026') {
 }
 if (path === '/sbi-research-credit-growth-2026') {
   return <SbiResearchCreditGrowth2026 />;
+}
+if (path === '/varma-bank-dominance-2026') {
+  return <VarmaBankDominance2026 />;
+}
+if (path === '/choosing-savings-account-2026') {
+  return <ChoosingSavingsAccount2026 />;
+}
+if (path === '/fixed-deposit-guide-2026') {
+  return <FixedDepositGuide2026 />;
+}
+if (path === '/emergency-fund-guide-2026') {
+  return <EmergencyFundGuide2026 />;
+}
+if (path === '/no-spend-challenge-2026') {
+  return <NoSpendChallenge2026 />;
+}
+if (path === '/grocery-savings-guide-2026') {
+  return <GrocerySavingsGuide2026 />;
+}
+if (path === '/invest-or-repay-debts-2026') {
+  return <InvestOrRepayDebts2026 />;
+}
+if (path === '/holiday-overspending-recovery-2026') {
+  return <HolidayOverspendingRecovery2026 />;
+}
+if (path === '/invisible-price-tag-2026') {
+  return <InvisiblePriceTag2026 />;
+}
+if (path === '/hidden-cost-delaying-investments-2026') {
+  return <HiddenCostDelayingInvestments2026 />;
+}
+if (path === '/start-sip-500-per-month-2026') {
+  return <StartSip500PerMonth2026 />;
+}
+if (path === '/sip-vs-fd-guide-2026') {
+  return <SipVsFdGuide2026 />;
+}
+if (path === '/asset-allocation-guide-2026') {
+  return <AssetAllocationGuide2026 />;
+}
+if (path === '/power-of-compounding-2026') {
+  return <PowerOfCompoundingGuide2026 />;
+}
+if (path === '/mutual-funds-vs-stocks-2026') {
+  return <MutualFundsVsStocks2026 />;
+}
+if (path === '/sip-guide-2026') {
+  return <SipGuide2026 />;
+}
+if (path === '/mutual-fund-factsheet-guide-2026') {
+  return <MutualFundFactsheetGuide2026 />;
+}
+if (path === '/ten-rupee-weekly-challenge-2026') {
+  return <TenRupeeWeeklyChallenge2026 />;
+}
+if (path === '/top-sip-funds-2026') {
+  return <TopSipFunds2026 />;
+}
+if (path === '/save-home-loan-interest-2026') {
+  return <SaveHomeLoanInterest2026 />;
+}
+if (path === '/home-loan-tenure-guide-2026') {
+  return <HomeLoanTenureGuide2026 />;
+}
+if (path === '/term-insurance-vs-ulip-2026') {
+  return <TermInsuranceVsUlip2026 />;
+}
+if (path === '/claim-settlement-ratio-guide-2026') {
+  return <ClaimSettlementRatioGuide2026 />;
+}
+if (path === '/top-health-insurance-2026') {
+  return <TopHealthInsurance2026 />;
 }
   // Default: show calculator
   return <EMICalculator />;
