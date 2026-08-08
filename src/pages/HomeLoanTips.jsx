@@ -1,14 +1,28 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
+import { TopBannerAd, InFeedAd, BottomBannerAd } from '../components/AdUnits';
 
 function HomeLoanTips() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-8 px-4">
+      <Helmet>
+        <title>How to Save ₹5 Lakh on Home Loan Interest - Truyon Finance</title>
+        <meta name="description" content="Learn practical strategies to save ₹5 lakh or more on your home loan interest. Expert tips on tenure, EMI, balance transfer, and more." />
+        <link rel="canonical" href="https://finance.truyon.com/home-loan-tips" />
+        <meta property="og:title" content="How to Save ₹5 Lakh on Home Loan Interest" />
+        <meta property="og:description" content="Practical strategies to reduce your home loan interest burden and become debt-free faster." />
+        <meta property="og:url" content="https://finance.truyon.com/home-loan-tips" />
+      </Helmet>
+
       <div className="max-w-4xl mx-auto">
         
         {/* Back to Home */}
         <a href="/" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6 text-sm">
           ← Back to Calculator
         </a>
+
+        {/* TOP BANNER AD */}
+        <TopBannerAd />
 
         {/* Blog Post Container */}
         <article className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -55,6 +69,9 @@ function HomeLoanTips() {
               At Truyon, we have analyzed thousands of home loans and identified five proven strategies 
               that can help you save ₹5 lakhs or more on your home loan interest.
             </p>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -138,6 +155,9 @@ function HomeLoanTips() {
               <span className="font-bold">How to do it:</span> When you receive a bonus, salary increment, 
               or any unexpected income, use it to make an additional EMI payment.
             </p>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           {/* Strategy 3 */}
@@ -240,6 +260,9 @@ function HomeLoanTips() {
                 Total Savings: ₹3.4 Lakh | Tenure Reduced: 3 years
               </p>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           {/* Strategy 5 */}
@@ -317,17 +340,20 @@ function HomeLoanTips() {
 
         </article>
 
+        {/* BOTTOM BANNER AD */}
+        <BottomBannerAd />
+
         {/* Related Posts */}
         <div className="mt-6 bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
           <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">Related Articles</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <a href="#" className="block p-4 bg-slate-50 dark:bg-slate-700 rounded-xl hover:shadow-md transition">
-              <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">Coming Soon</p>
+            <a href="/sip-vs-fd" className="block p-4 bg-slate-50 dark:bg-slate-700 rounded-xl hover:shadow-md transition">
+              <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">Read</p>
               <p className="font-medium text-slate-800 dark:text-white mt-1">SIP vs FD: Which is Better for You?</p>
             </a>
-            <a href="#" className="block p-4 bg-slate-50 dark:bg-slate-700 rounded-xl hover:shadow-md transition">
-              <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">Coming Soon</p>
-              <p className="font-medium text-slate-800 dark:text-white mt-1">Top 10 Tax Saving Tips for 2026</p>
+            <a href="/budget-2026" className="block p-4 bg-slate-50 dark:bg-slate-700 rounded-xl hover:shadow-md transition">
+              <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">Read</p>
+              <p className="font-medium text-slate-800 dark:text-white mt-1">Union Budget 2026-27: Key Highlights</p>
             </a>
           </div>
         </div>

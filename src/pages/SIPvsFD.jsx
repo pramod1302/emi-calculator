@@ -1,14 +1,28 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
+import { TopBannerAd, InFeedAd, BottomBannerAd } from '../components/AdUnits';
 
 function SIPvsFD() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-8 px-4">
+      <Helmet>
+        <title>SIP vs FD: Which Investment is Better for You? - Truyon Finance</title>
+        <meta name="description" content="Detailed comparison of Systematic Investment Plans (SIP) and Fixed Deposits (FD). Learn about returns, risks, taxation, and choose the right investment for your goals." />
+        <link rel="canonical" href="https://finance.truyon.com/sip-vs-fd" />
+        <meta property="og:title" content="SIP vs FD: Which Investment is Better for You?" />
+        <meta property="og:description" content="A detailed comparison of Systematic Investment Plans and Fixed Deposits to help you make the right choice." />
+        <meta property="og:url" content="https://finance.truyon.com/sip-vs-fd" />
+      </Helmet>
+
       <div className="max-w-4xl mx-auto">
         
         {/* Back to Home */}
         <a href="/" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6 text-sm">
           ← Back to Calculator
         </a>
+
+        {/* TOP BANNER AD */}
+        <TopBannerAd />
 
         {/* Blog Post Container */}
         <article className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -54,6 +68,9 @@ function SIPvsFD() {
               This guide will help you understand the differences, advantages, and disadvantages of each 
               so you can make an informed decision based on your financial goals.
             </p>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -178,6 +195,9 @@ function SIPvsFD() {
               </table>
               <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-3">* 12% annual return is historical average of equity mutual funds</p>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -236,6 +256,9 @@ function SIPvsFD() {
                 </tbody>
               </table>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           {/* When to Choose */}
@@ -331,6 +354,9 @@ function SIPvsFD() {
 
         </article>
 
+        {/* BOTTOM BANNER AD */}
+        <BottomBannerAd />
+
         {/* Related Posts */}
         <div className="mt-6 bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
           <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">Related Articles</h3>
@@ -339,9 +365,9 @@ function SIPvsFD() {
               <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">Read</p>
               <p className="font-medium text-slate-800 dark:text-white mt-1">How to Save ₹5 Lakh on Home Loan Interest</p>
             </a>
-            <a href="#" className="block p-4 bg-slate-50 dark:bg-slate-700 rounded-xl hover:shadow-md transition">
-              <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">Coming Soon</p>
-              <p className="font-medium text-slate-800 dark:text-white mt-1">Top 10 Tax Saving Tips for 2026</p>
+            <a href="/budget-2026" className="block p-4 bg-slate-50 dark:bg-slate-700 rounded-xl hover:shadow-md transition">
+              <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">Read</p>
+              <p className="font-medium text-slate-800 dark:text-white mt-1">Union Budget 2026-27: Key Highlights</p>
             </a>
           </div>
         </div>

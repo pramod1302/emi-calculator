@@ -1,14 +1,28 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
+import { TopBannerAd, InFeedAd, BottomBannerAd } from '../components/AdUnits';
 
 function UPIChargesBill() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-8 px-4">
+      <Helmet>
+        <title>Lok Sabha Passes Bill to Levy Charges on UPI Transactions - Truyon Finance</title>
+        <meta name="description" content="Lok Sabha passes Taxation and other Laws (Amendment) Bill 2026 authorising banks to levy charges on UPI transactions. Learn about MDR and its impact." />
+        <link rel="canonical" href="https://finance.truyon.com/upi-charges-bill" />
+        <meta property="og:title" content="Lok Sabha Passes Bill to Authorise Banks to Levy Charges on UPI Transactions" />
+        <meta property="og:description" content="The Taxation and other Laws (Amendment) Bill amends the Payment and Settlement Systems Act, 2007, paving the way for Merchant Discount Rate (MDR) on UPI payments." />
+        <meta property="og:url" content="https://finance.truyon.com/upi-charges-bill" />
+      </Helmet>
+
       <div className="max-w-4xl mx-auto">
         
         {/* Back to Home */}
         <a href="/" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6 text-sm">
           ← Back to Calculator
         </a>
+
+        {/* TOP BANNER AD */}
+        <TopBannerAd />
 
         {/* Blog Post Container */}
         <article className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -35,7 +49,7 @@ function UPIChargesBill() {
 
           {/* Featured Image */}
           <div className="bg-gradient-to-br from-slate-700 to-slate-900 rounded-xl p-8 mb-6 text-white text-center">
-            <p className="text-sm opacity-80">📸 Lok Sabha Session</p>
+            <p className="text-sm opacity-80">Lok Sabha Session</p>
             <p className="text-sm mt-2 opacity-60">Lok Sabha Speaker Om Birla conducts proceedings during the Monsoon Session in New Delhi on August 6, 2026.</p>
             <p className="text-xs mt-2 opacity-40">Photo Credit: Sansad TV/ANI</p>
           </div>
@@ -52,6 +66,9 @@ function UPIChargesBill() {
               The bill was passed without debate due to persistent sloganeering by the Opposition over various issues, 
               including allegations of theft of donation at the Ram temple in Ayodhya.
             </p>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -104,6 +121,9 @@ function UPIChargesBill() {
                 </ul>
               </div>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -151,6 +171,9 @@ function UPIChargesBill() {
                 UPI has been the exception, driving its massive adoption.
               </p>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -168,12 +191,12 @@ function UPIChargesBill() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
               <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-700">
                 <p className="text-sm text-slate-700 dark:text-slate-300">
-                  <span className="font-bold">✅</span> Levy small charges on digital payment services for consumers and small businesses
+                  <span className="font-bold">Levy small charges</span> on digital payment services for consumers and small businesses
                 </p>
               </div>
               <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-700">
                 <p className="text-sm text-slate-700 dark:text-slate-300">
-                  <span className="font-bold">✅</span> Ensure a sustainable revenue model for banks, Payment Service Providers (PSPs), and payment infrastructure firms
+                  <span className="font-bold">Ensure sustainable revenue</span> for banks, Payment Service Providers (PSPs), and payment infrastructure firms
                 </p>
               </div>
             </div>
@@ -248,6 +271,9 @@ function UPIChargesBill() {
           </div>
 
         </article>
+
+        {/* BOTTOM BANNER AD */}
+        <BottomBannerAd />
 
         {/* Related Posts */}
         <div className="mt-6 bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">

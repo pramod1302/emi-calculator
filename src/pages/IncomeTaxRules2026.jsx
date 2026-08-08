@@ -1,12 +1,26 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
+import { TopBannerAd, InFeedAd, BottomBannerAd } from '../components/AdUnits';
 
 function IncomeTaxRules2026() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-8 px-4">
+      <Helmet>
+        <title>New Income Tax Rules 2026: HRA, Capital Gains & More - Truyon Finance</title>
+        <meta name="description" content="CBDT notifies Income-tax Rules 2026 effective April 1, 2026. Learn about expanded HRA exemption cities, capital gains reporting, and new forms." />
+        <link rel="canonical" href="https://finance.truyon.com/income-tax-rules-2026" />
+        <meta property="og:title" content="New Income Tax Rules 2026: HRA, Capital Gains & More" />
+        <meta property="og:description" content="CBDT notifies Income-tax Rules 2026 effective April 1, 2026, implementing the new Income-tax Act, 2025." />
+        <meta property="og:url" content="https://finance.truyon.com/income-tax-rules-2026" />
+      </Helmet>
+
       <div className="max-w-4xl mx-auto">
         <a href="/" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6 text-sm">
           ← Back to Calculator
         </a>
+
+        {/* TOP BANNER AD */}
+        <TopBannerAd />
 
         <article className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
           <header className="mb-8">
@@ -67,6 +81,9 @@ function IncomeTaxRules2026() {
               </div>
               <p className="text-xs text-slate-500 mt-2">Previously only Delhi, Mumbai, Chennai, and Kolkata qualified</p>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -97,6 +114,9 @@ function IncomeTaxRules2026() {
                 <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">The new rules introduce simplified compliance framework with redesigned forms for easier filing.</p>
               </div>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <section className="mt-8 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl text-center">
@@ -111,6 +131,9 @@ function IncomeTaxRules2026() {
             <p className="text-xs text-slate-400">Source: CBDT Notification, Income-tax Rules 2026</p>
           </div>
         </article>
+
+        {/* BOTTOM BANNER AD */}
+        <BottomBannerAd />
 
         <div className="mt-6 bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
           <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">Related Articles</h3>

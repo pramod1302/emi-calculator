@@ -1,14 +1,28 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
+import { TopBannerAd, InFeedAd, BottomBannerAd } from '../components/AdUnits';
 
 function MFOnlyPMS() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-8 px-4">
+      <Helmet>
+        <title>SEBI Proposes Mutual Fund-Only PMS: Key Changes - Truyon Finance</title>
+        <meta name="description" content="SEBI proposes Mutual Fund-only PMS with ₹25 lakh minimum investment. Learn about the new framework, fee structure, and how it impacts investors." />
+        <link rel="canonical" href="https://finance.truyon.com/sebi-mf-pms-proposal" />
+        <meta property="og:title" content="SEBI Proposes Mutual Fund-Only PMS: Key Changes That Could Impact Your Investments" />
+        <meta property="og:description" content="Market regulator's new framework could lower entry barriers for affluent investors and reshape India's wealth management industry." />
+        <meta property="og:url" content="https://finance.truyon.com/sebi-mf-pms-proposal" />
+      </Helmet>
+
       <div className="max-w-4xl mx-auto">
         
         {/* Back to Home */}
         <a href="/" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6 text-sm">
           ← Back to Calculator
         </a>
+
+        {/* TOP BANNER AD */}
+        <TopBannerAd />
 
         {/* Blog Post Container */}
         <article className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -62,11 +76,14 @@ function MFOnlyPMS() {
           {/* Introduction */}
           <section className="mb-8">
             <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-              The Securities and Exchange Board of India (SEBI) has released a consultation paper proposing a major overhaul of the Portfolio Management Services (PMS) framework [citation:2][citation:3]. The centrepiece of this proposal is the introduction of a new category called <strong>Mutual Fund-only Portfolio Management Service (MF-PMS)</strong>, which could significantly expand access to professionally managed investment portfolios [citation:6].
+              The Securities and Exchange Board of India (SEBI) has released a consultation paper proposing a major overhaul of the Portfolio Management Services (PMS) framework. The centrepiece of this proposal is the introduction of a new category called <strong>Mutual Fund-only Portfolio Management Service (MF-PMS)</strong>, which could significantly expand access to professionally managed investment portfolios.
             </p>
             <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-3">
-              The proposed framework comes at a time when India's PMS industry has grown substantially, with assets under management rising from ₹18.07 lakh crore in April 2019 to <strong>₹42.61 lakh crore in May 2026</strong>, while the number of registered portfolio managers has more than doubled from 226 to 515 [citation:3][citation:10].
+              The proposed framework comes at a time when India's PMS industry has grown substantially, with assets under management rising from ₹18.07 lakh crore in April 2019 to <strong>₹42.61 lakh crore in May 2026</strong>, while the number of registered portfolio managers has more than doubled from 226 to 515.
             </p>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -78,7 +95,7 @@ function MFOnlyPMS() {
             </h2>
             
             <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-              Under the proposed framework, MF-PMS portfolios will invest <strong>exclusively in direct plans of mutual funds</strong>, including exchange-traded funds (ETFs) and Specialised Investment Funds (SIFs) [citation:2][citation:6]. This is a significant departure from traditional PMS, which allows investment across listed equities, debt securities, and other securities [citation:6].
+              Under the proposed framework, MF-PMS portfolios will invest <strong>exclusively in direct plans of mutual funds</strong>, including exchange-traded funds (ETFs) and Specialised Investment Funds (SIFs). This is a significant departure from traditional PMS, which allows investment across listed equities, debt securities, and other securities.
             </p>
 
             <div className="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-5 my-4 overflow-x-auto">
@@ -115,6 +132,9 @@ function MFOnlyPMS() {
                 </tbody>
               </table>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -130,8 +150,8 @@ function MFOnlyPMS() {
                 <h3 className="font-bold text-blue-800 dark:text-blue-300 text-lg">Mass Affluent Investors</h3>
                 <ul className="list-disc pl-5 text-sm text-slate-700 dark:text-slate-300 mt-2 space-y-1">
                   <li>Investors with ₹25-50 lakh investable surplus</li>
-                  <li>Previously didn't qualify for traditional PMS [citation:6]</li>
-                  <li>Estimated 1.5-2 crore Indians in this segment [citation:6]</li>
+                  <li>Previously didn't qualify for traditional PMS</li>
+                  <li>Estimated 1.5-2 crore Indians in this segment</li>
                   <li>Access to professional portfolio management</li>
                 </ul>
               </div>
@@ -139,8 +159,8 @@ function MFOnlyPMS() {
                 <h3 className="font-bold text-emerald-800 dark:text-emerald-300 text-lg">Portfolio Managers</h3>
                 <ul className="list-disc pl-5 text-sm text-slate-700 dark:text-slate-300 mt-2 space-y-1">
                   <li>Lower entry barriers (₹2 crore net worth)</li>
-                  <li>Simplified compliance and operations [citation:3]</li>
-                  <li>New business opportunities [citation:2]</li>
+                  <li>Simplified compliance and operations</li>
+                  <li>New business opportunities</li>
                   <li>Easier to scale boutique wealth management</li>
                 </ul>
               </div>
@@ -148,7 +168,7 @@ function MFOnlyPMS() {
 
             <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded-r-lg mt-4">
               <p className="text-sm text-yellow-800 dark:text-yellow-300">
-                <span className="font-bold">📌 Key Insight:</span> The MF-only PMS framework is positioned as a bridge between self-managed mutual fund investing and traditional PMS, allowing investors to access professional portfolio management at a lower entry threshold [citation:6].
+                <span className="font-bold">Key Insight:</span> The MF-only PMS framework is positioned as a bridge between self-managed mutual fund investing and traditional PMS, allowing investors to access professional portfolio management at a lower entry threshold.
               </p>
             </div>
           </section>
@@ -162,33 +182,33 @@ function MFOnlyPMS() {
             </h2>
 
             <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-              SEBI has proposed clear guidelines on fees to ensure transparency [citation:4][citation:6]:
+              SEBI has proposed clear guidelines on fees to ensure transparency:
             </p>
 
             <div className="space-y-4 mt-4">
               <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4">
                 <h4 className="font-bold text-slate-800 dark:text-white">Fixed Management Fee</h4>
                 <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                  Capped at <strong className="text-blue-600 dark:text-blue-400">2.5%</strong> of Assets Under Management (AUM) [citation:2][citation:6]
+                  Capped at <strong className="text-blue-600 dark:text-blue-400">2.5%</strong> of Assets Under Management (AUM)
                 </p>
               </div>
               <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4">
                 <h4 className="font-bold text-slate-800 dark:text-white">Performance-Linked Fee</h4>
                 <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                  May be charged in addition to fixed fee, subject to <strong>client consent</strong> [citation:2][citation:9]
+                  May be charged in addition to fixed fee, subject to <strong>client consent</strong>
                 </p>
               </div>
               <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4">
                 <h4 className="font-bold text-slate-800 dark:text-white">Hybrid Model</h4>
                 <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                  Combination of fixed and performance-based fees [citation:2]
+                  Combination of fixed and performance-based fees
                 </p>
               </div>
             </div>
 
             <div className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg mt-4">
               <p className="text-sm text-amber-800 dark:text-amber-300">
-                <span className="font-bold">⚠️ Important Note:</span> Investors should be aware that MF-only PMS involves <strong>two layers of costs</strong> — the expense ratio of the underlying mutual funds plus the PMS management fee [citation:4]. The 2.5% cap is the maximum, not the minimum fee [citation:4].
+                <span className="font-bold">Important Note:</span> Investors should be aware that MF-only PMS involves <strong>two layers of costs</strong> — the expense ratio of the underlying mutual funds plus the PMS management fee. The 2.5% cap is the maximum, not the minimum fee.
               </p>
             </div>
           </section>
@@ -204,21 +224,24 @@ function MFOnlyPMS() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-4">
                 <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">Expanded Investment Universe</p>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Portfolio managers can now invest in securities proposed to be listed, foreign securities, REITs, and InvITs [citation:3]</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Portfolio managers can now invest in securities proposed to be listed, foreign securities, REITs, and InvITs</p>
               </div>
               <div className="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-4">
                 <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">Demat Account Portability</p>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Investors can switch PMS managers without opening a new demat account [citation:2][citation:3]</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Investors can switch PMS managers without opening a new demat account</p>
               </div>
               <div className="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-4">
                 <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">Derivatives Framework</p>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Aggregate exposure up to 1.25x client's AUM permitted; unhedged short exposure capped at 50% [citation:3]</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Aggregate exposure up to 1.25x client's AUM permitted; unhedged short exposure capped at 50%</p>
               </div>
               <div className="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-4">
                 <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">Grandfathering for Existing Clients</p>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Existing PMS clients (non MF-PMS) have 36 months to meet the ₹50 lakh minimum requirement [citation:2]</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Existing PMS clients (non MF-PMS) have 36 months to meet the ₹50 lakh minimum requirement</p>
               </div>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -241,11 +264,11 @@ function MFOnlyPMS() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-bold">•</span>
-                  <span>You get <span className="font-bold">discretionary management</span> — the manager executes decisions on your behalf [citation:6]</span>
+                  <span>You get <span className="font-bold">discretionary management</span> — the manager executes decisions on your behalf</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-bold">•</span>
-                  <span>Consultation paper is open for <span className="font-bold">public comments until August 13, 2026</span> [citation:3][citation:9]</span>
+                  <span>Consultation paper is open for <span className="font-bold">public comments until August 13, 2026</span></span>
                 </li>
               </ul>
             </div>
@@ -275,6 +298,9 @@ function MFOnlyPMS() {
           </div>
 
         </article>
+
+        {/* BOTTOM BANNER AD */}
+        <BottomBannerAd />
 
         {/* Related Posts */}
         <div className="mt-6 bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">

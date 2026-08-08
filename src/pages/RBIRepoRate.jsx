@@ -1,14 +1,28 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
+import { TopBannerAd, InFeedAd, BottomBannerAd } from '../components/AdUnits';
 
 function RBIRepoRate() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-8 px-4">
+      <Helmet>
+        <title>RBI MPC Keeps Policy Rate Unchanged at 5.25% - Truyon Finance</title>
+        <meta name="description" content="RBI MPC unanimously keeps repo rate unchanged at 5.25% for the fourth consecutive meeting. GDP growth projected at 6.7% and CPI inflation at 5.0% for FY27." />
+        <link rel="canonical" href="https://finance.truyon.com/rbi-repo-rate-august-2026" />
+        <meta property="og:title" content="RBI MPC Keeps Policy Rate Unchanged at 5.25%" />
+        <meta property="og:description" content="MPC votes unanimously for status quo, retains neutral stance amid inflation concerns and global uncertainties." />
+        <meta property="og:url" content="https://finance.truyon.com/rbi-repo-rate-august-2026" />
+      </Helmet>
+
       <div className="max-w-4xl mx-auto">
         
         {/* Back to Home */}
         <a href="/" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6 text-sm">
           ← Back to Calculator
         </a>
+
+        {/* TOP BANNER AD */}
+        <TopBannerAd />
 
         {/* Blog Post Container */}
         <article className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -34,7 +48,7 @@ function RBIRepoRate() {
 
           {/* Featured Image */}
           <div className="bg-gradient-to-br from-slate-700 to-slate-900 rounded-xl p-6 mb-6 text-white text-center">
-            <p className="text-sm opacity-80">📸 RBI Governor Sanjay Malhotra</p>
+            <p className="text-sm opacity-80">RBI Governor Sanjay Malhotra</p>
             <p className="text-xs mt-2 opacity-60">Photo Credit: Reuters</p>
           </div>
 
@@ -100,6 +114,9 @@ function RBIRepoRate() {
             <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-3">
               Consequently, the standing deposit facility (SDF) rate remains at 5%, and the marginal standing facility (MSF) rate and the bank rate remain at 5.50%. The MPC also decided to continue with the neutral stance.
             </p>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -149,9 +166,12 @@ function RBIRepoRate() {
 
             <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded-r-lg mt-4">
               <p className="text-sm text-yellow-800 dark:text-yellow-300">
-                <span className="font-bold">📌 Governor's Observation:</span> "The outlook, however, is hazy because of the uncertainties regarding the southwest monsoon, El Niño, geopolitics and global trade policy."
+                <span className="font-bold">Governor's Observation:</span> "The outlook, however, is hazy because of the uncertainties regarding the southwest monsoon, El Niño, geopolitics and global trade policy."
               </p>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -196,7 +216,7 @@ function RBIRepoRate() {
 
             <div className="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded-r-lg mt-3">
               <p className="text-sm text-blue-800 dark:text-blue-300">
-                <span className="font-bold">📊 Key Insight:</span> The higher inflation is mostly on account of fuel and food, with little signs of generalisation of price pressures so far. Headline inflation is expected to peak in Q3:2026-27, primarily due to food and fuel, before moderating thereafter.
+                <span className="font-bold">Key Insight:</span> The higher inflation is mostly on account of fuel and food, with little signs of generalisation of price pressures so far. Headline inflation is expected to peak in Q3:2026-27, primarily due to food and fuel, before moderating thereafter.
               </p>
             </div>
           </section>
@@ -215,13 +235,13 @@ function RBIRepoRate() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
               <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4">
-                <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">✅ For Existing Borrowers</p>
+                <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">For Existing Borrowers</p>
                 <p className="text-sm text-slate-700 dark:text-slate-300 mt-1">
                   No immediate increase in EMI payments. This is the fourth consecutive pause, giving borrowers stability and predictability in their monthly outflows.
                 </p>
               </div>
               <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-4">
-                <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-300">✅ For New Borrowers</p>
+                <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-300">For New Borrowers</p>
                 <p className="text-sm text-slate-700 dark:text-slate-300 mt-1">
                   Home loan rates are likely to remain stable. The neutral stance signals that banks are not anticipating immediate changes in their lending rates.
                 </p>
@@ -230,10 +250,13 @@ function RBIRepoRate() {
 
             <div className="bg-slate-50 dark:bg-slate-700/50 rounded-xl p-5 mt-4">
               <p className="text-sm text-slate-700 dark:text-slate-300">
-                <span className="font-bold">💡 Use Our EMI Calculator:</span> Check how different interest rates affect your monthly payments. 
+                <span className="font-bold">Use Our EMI Calculator:</span> Check how different interest rates affect your monthly payments. 
                 <a href="/" className="text-blue-600 dark:text-blue-400 hover:underline ml-1">Calculate your EMI now →</a>
               </p>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -299,6 +322,9 @@ function RBIRepoRate() {
           </div>
 
         </article>
+
+        {/* BOTTOM BANNER AD */}
+        <BottomBannerAd />
 
         {/* Related Posts */}
         <div className="mt-6 bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">

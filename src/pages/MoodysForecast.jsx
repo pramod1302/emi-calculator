@@ -1,12 +1,26 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
+import { TopBannerAd, InFeedAd, BottomBannerAd } from '../components/AdUnits';
 
 function MoodysForecast() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-8 px-4">
+      <Helmet>
+        <title>Moody's Lowers India's 2026 GDP Growth Forecast to 6% - Truyon Finance</title>
+        <meta name="description" content="Moody's cuts India's GDP growth forecast to 6% citing weaker private consumption, slower investments, and high energy costs. India remains fastest-growing major economy." />
+        <link rel="canonical" href="https://finance.truyon.com/moodys-forecast" />
+        <meta property="og:title" content="Moody's Lowers India's 2026 GDP Growth Forecast to 6%" />
+        <meta property="og:description" content="Rating agency cites weaker private consumption, slower investments, and high energy costs as headwinds." />
+        <meta property="og:url" content="https://finance.truyon.com/moodys-forecast" />
+      </Helmet>
+
       <div className="max-w-4xl mx-auto">
         <a href="/" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6 text-sm">
           ← Back to Calculator
         </a>
+
+        {/* TOP BANNER AD */}
+        <TopBannerAd />
 
         <article className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
           <header className="mb-8">
@@ -55,6 +69,9 @@ function MoodysForecast() {
             <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-3">
               For FY27, the agency has also lowered its growth estimate by 0.5 percentage points, reflecting a more cautious outlook on India's economic trajectory over the medium term.
             </p>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -79,9 +96,12 @@ function MoodysForecast() {
 
           <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded-r-lg mt-4">
             <p className="text-sm text-yellow-800 dark:text-yellow-300">
-              <span className="font-bold">📌 Key Insight:</span> Despite the downgrade, India remains the fastest-growing major economy. The 6% growth forecast is still significantly higher than most other large economies.
+              <span className="font-bold">Key Insight:</span> Despite the downgrade, India remains the fastest-growing major economy. The 6% growth forecast is still significantly higher than most other large economies.
             </p>
           </div>
+
+          {/* IN-FEED AD */}
+          <InFeedAd />
 
           <section className="mt-8 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl text-center">
             <p className="font-bold text-slate-800 dark:text-white mb-2">Plan Your Investments</p>
@@ -95,6 +115,9 @@ function MoodysForecast() {
             <p className="text-xs text-slate-400">Source: Moody's Analytics Research Report, August 2026</p>
           </div>
         </article>
+
+        {/* BOTTOM BANNER AD */}
+        <BottomBannerAd />
 
         <div className="mt-6 bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
           <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">Related Articles</h3>

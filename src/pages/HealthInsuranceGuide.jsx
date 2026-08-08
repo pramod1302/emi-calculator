@@ -1,12 +1,26 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
+import { TopBannerAd, InFeedAd, BottomBannerAd } from '../components/AdUnits';
 
 function HealthInsuranceGuide() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-8 px-4">
+      <Helmet>
+        <title>How to Choose the Right Health Insurance Plan in India - Truyon Finance</title>
+        <meta name="description" content="A comprehensive guide to selecting the best health insurance policy for you and your family. Learn about claim settlement ratios, network hospitals, and key factors to consider." />
+        <link rel="canonical" href="https://finance.truyon.com/health-insurance-guide" />
+        <meta property="og:title" content="How to Choose the Right Health Insurance Plan in India" />
+        <meta property="og:description" content="A comprehensive guide to selecting the best health insurance policy for you and your family." />
+        <meta property="og:url" content="https://finance.truyon.com/health-insurance-guide" />
+      </Helmet>
+
       <div className="max-w-4xl mx-auto">
         <a href="/" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6 text-sm">
           ← Back to Calculator
         </a>
+
+        {/* TOP BANNER AD */}
+        <TopBannerAd />
 
         <article className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
           <header className="mb-8">
@@ -52,6 +66,9 @@ function HealthInsuranceGuide() {
             <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
               With rising healthcare costs in India, health insurance has become a necessity rather than a luxury. A single hospitalization can cost lakhs of rupees, wiping out years of savings. A comprehensive health insurance policy protects you and your family from such financial shocks.
             </p>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -116,6 +133,9 @@ function HealthInsuranceGuide() {
                 <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Understand waiting periods for pre-existing conditions (usually 2-4 years) and specific diseases (12-24 months).</p>
               </div>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded-r-lg mt-4">
@@ -136,6 +156,9 @@ function HealthInsuranceGuide() {
             <p className="text-xs text-slate-400">Source: IRDAI Annual Report 2025-26, Industry Reports</p>
           </div>
         </article>
+
+        {/* BOTTOM BANNER AD */}
+        <BottomBannerAd />
 
         <div className="mt-6 bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
           <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">Related Articles</h3>
