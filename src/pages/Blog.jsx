@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { TopBannerAd, InFeedAd, BottomBannerAd } from '../components/AdUnits';
 
 function Blog() {
   // Add all your articles here
@@ -99,6 +100,9 @@ function Blog() {
           ← Back to Calculator
         </a>
 
+        {/* TOP BANNER AD */}
+        <TopBannerAd />
+
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white">
@@ -111,26 +115,33 @@ function Blog() {
 
         {/* Articles List */}
         <div className="space-y-4">
-          {sortedArticles.map((article) => (
-            <a 
-              key={article.slug}
-              href={article.slug} 
-              className="block bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm hover:shadow-md transition border border-slate-200 dark:border-slate-700"
-            >
-              <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mb-2">
-                <span className="text-blue-600 dark:text-blue-400 font-medium">{article.category}</span>
-                <span>•</span>
-                <span>{article.date}</span>
-              </div>
-              <h2 className="text-lg font-bold text-slate-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition">
-                {article.title}
-              </h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                {article.excerpt}
-              </p>
-            </a>
+          {sortedArticles.map((article, index) => (
+            <React.Fragment key={article.slug}>
+              <a 
+                href={article.slug} 
+                className="block bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm hover:shadow-md transition border border-slate-200 dark:border-slate-700"
+              >
+                <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mb-2">
+                  <span className="text-blue-600 dark:text-blue-400 font-medium">{article.category}</span>
+                  <span>•</span>
+                  <span>{article.date}</span>
+                </div>
+                <h2 className="text-lg font-bold text-slate-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition">
+                  {article.title}
+                </h2>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                  {article.excerpt}
+                </p>
+              </a>
+              
+              {/* IN-FEED AD (after every 3 articles) */}
+              {(index + 1) % 3 === 0 && <InFeedAd />}
+            </React.Fragment>
           ))}
         </div>
+
+        {/* BOTTOM BANNER AD */}
+        <BottomBannerAd />
 
         {/* Footer */}
         <div className="mt-8 text-center text-xs text-slate-400">

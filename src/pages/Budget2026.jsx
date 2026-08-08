@@ -1,12 +1,26 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
+import { TopBannerAd, InFeedAd, BottomBannerAd } from '../components/AdUnits';
 
 function Budget2026() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-8 px-4">
+      <Helmet>
+        <title>Union Budget 2026-27: Key Highlights and Tax Changes - Truyon Finance</title>
+        <meta name="description" content="Read the complete summary of Union Budget 2026-27 including new Income Tax Act, capex push to ₹12.2 lakh crore, and key tax changes." />
+        <link rel="canonical" href="https://finance.truyon.com/budget-2026" />
+        <meta property="og:title" content="Union Budget 2026-27: Key Highlights and Tax Changes" />
+        <meta property="og:description" content="New Income Tax Act effective April 1, 2026, capex push to ₹12.2 lakh crore, and major changes for taxpayers." />
+        <meta property="og:url" content="https://finance.truyon.com/budget-2026" />
+      </Helmet>
+
       <div className="max-w-4xl mx-auto">
         <a href="/" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6 text-sm">
           ← Back to Calculator
         </a>
+
+        {/* TOP BANNER AD */}
+        <TopBannerAd />
 
         <article className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
           <header className="mb-8">
@@ -59,6 +73,9 @@ function Budget2026() {
             <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-3">
               However, the budget did not change personal income tax rates or slabs. The tax regime remains unchanged, with the option to choose between the old and new tax regimes.
             </p>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <hr className="my-8 border-slate-200 dark:border-slate-700" />
@@ -132,6 +149,9 @@ function Budget2026() {
                 <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Streamlined Foreign Direct Investment (FDI) norms to attract global investors.</p>
               </div>
             </div>
+
+            {/* IN-FEED AD */}
+            <InFeedAd />
           </section>
 
           <section className="mt-8 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl text-center">
@@ -146,6 +166,9 @@ function Budget2026() {
             <p className="text-xs text-slate-400">Source: Union Budget 2026-27, Government of India</p>
           </div>
         </article>
+
+        {/* BOTTOM BANNER AD */}
+        <BottomBannerAd />
 
         <div className="mt-6 bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
           <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">Related Articles</h3>

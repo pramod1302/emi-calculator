@@ -12,6 +12,7 @@ import {
   FaCalendarAlt, FaPercent, FaClock, FaArrowUp, FaArrowDown,
   FaNewspaper
 } from 'react-icons/fa';
+import { TopBannerAd, BottomBannerAd, SidebarAd, InFeedAd } from './components/AdUnits';
 
 // ==========================================
 // CONSTANTS & PRESETS
@@ -96,7 +97,6 @@ export default function TruyonFinanceDashboard() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Blog Link in Header */}
             <a 
               href="/blog" 
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition border border-blue-200 dark:border-blue-800"
@@ -125,6 +125,9 @@ export default function TruyonFinanceDashboard() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+        {/* TOP BANNER AD */}
+        <TopBannerAd />
+
         {/* CALCULATOR NAVIGATION */}
         <div className="flex space-x-2 overflow-x-auto pb-2 scrollbar-none mb-6">
           {[
@@ -163,6 +166,25 @@ export default function TruyonFinanceDashboard() {
             {activeTab === 'compare' && <CompareCalculatorView formatCurrency={formatCurrency} symbol={symbol} />}
           </motion.div>
         </AnimatePresence>
+
+        {/* BOTTOM BANNER AD */}
+        <BottomBannerAd />
+
+        {/* ===== FOOTER ===== */}
+        <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-700 text-center text-xs text-slate-400 space-y-2">
+          <div className="flex justify-center gap-4 flex-wrap">
+            <a href="/blog" className="text-blue-600 dark:text-blue-400 hover:underline">Blog</a>
+            <span className="text-slate-300 dark:text-slate-600">|</span>
+            <a href="/terms" className="text-blue-600 dark:text-blue-400 hover:underline">Terms</a>
+            <span className="text-slate-300 dark:text-slate-600">|</span>
+            <a href="/privacy" className="text-blue-600 dark:text-blue-400 hover:underline">Privacy</a>
+            <span className="text-slate-300 dark:text-slate-600">|</span>
+            <a href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">Contact</a>
+          </div>
+          <div>
+            © 2026 <span className="text-blue-600 dark:text-blue-400 font-medium">Truyon</span>
+          </div>
+        </div>
       </main>
     </div>
   );
@@ -232,6 +254,11 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      {/* SIDEBAR AD (DESKTOP) */}
+      <div className="hidden lg:block lg:col-span-1">
+        <SidebarAd />
+      </div>
+
       <div className="lg:col-span-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 space-y-6 shadow-sm">
         <div>
           <h2 className="text-lg font-bold text-slate-800 dark:text-white">Loan Parameters</h2>
@@ -290,7 +317,7 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
         </div>
       </div>
 
-      <div className="lg:col-span-7 space-y-6">
+      <div className="lg:col-span-6 space-y-6">
         <div className="grid grid-cols-3 gap-3">
           <div className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-2xl p-4 shadow-xl">
             <p className="text-xs opacity-80">Monthly EMI</p>
@@ -413,6 +440,9 @@ function EMICalculatorView({ formatCurrency, symbol, darkMode }) {
             </div>
           )}
         </div>
+
+        {/* IN-FEED AD */}
+        <InFeedAd />
       </div>
     </div>
   );
@@ -593,6 +623,9 @@ function SIPCalculatorView({ formatCurrency, symbol, darkMode }) {
             </span>
           </div>
         </div>
+
+        {/* IN-FEED AD */}
+        <InFeedAd />
       </div>
     </div>
   );
@@ -752,6 +785,9 @@ function FDCalculatorView({ formatCurrency, symbol, darkMode }) {
             Total maturity: <span className="font-bold">{formatCurrency(metrics.maturity)}</span>
           </div>
         </div>
+
+        {/* IN-FEED AD */}
+        <InFeedAd />
       </div>
     </div>
   );
@@ -866,6 +902,9 @@ function CompareCalculatorView({ formatCurrency, symbol }) {
             </div>
           </div>
         </div>
+
+        {/* IN-FEED AD */}
+        <InFeedAd />
       </div>
     </div>
   );
