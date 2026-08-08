@@ -7,33 +7,61 @@ const __dirname = path.dirname(__filename);
 
 const baseUrl = 'https://finance.truyon.com';
 
-// List all your pages - UPDATE THIS AS YOU ADD MORE PAGES
-const pages = [
+// Get all files from pages directory
+const pagesDir = path.join(__dirname, '..', 'src', 'pages');
+const pageFiles = fs.readdirSync(pagesDir);
+
+// Filter out non-component files and generate slugs
+const generatedPages = pageFiles
+  .filter(file => {
+    // Only include .jsx and .js files
+    return (file.endsWith('.jsx') || file.endsWith('.js')) && 
+           // Exclude files that don't start with capital letter (helpers, etc.)
+           file[0] === file[0].toUpperCase() &&
+           // Exclude specific files if needed
+           !file.includes('index') &&
+           !file.includes('Layout');
+  })
+  .map(file => {
+    // Convert filename to URL slug
+    // HomeLoanTips.jsx -> /home-loan-tips
+    const slug = '/' + file
+      .replace(/\.(jsx|js)$/, '')
+      .replace(/([A-Z])/g, (match, letter, index) => {
+        return index === 0 ? letter.toLowerCase() : '-' + letter.toLowerCase();
+      });
+    return slug;
+  });
+
+// Manual pages that might not be in the pages directory
+const manualPages = [
   '/',
   '/blog',
-  '/upi-charges-bill',
-  '/rbi-repo-rate-august-2026',
-  '/home-loan-tips',
-  '/sebi-mf-pms-proposal',
-  '/sip-vs-fd',
-  '/goldman-sachs-gdp-upgrade',
-  '/budget-2026',
-  '/moodys-forecast',
-  '/income-tax-rules-2026',
-  '/health-insurance-guide',
-  '/terms',
-  '/privacy',
-  '/contact',
 ];
+
+// Combine all pages
+const allPages = [...new Set([...manualPages, ...generatedPages])];
+
+// Define special frequencies for specific pages
+const getChangefreq = (page) => {
+  if (page === '/' || page === '/blog') return 'daily';
+  return 'weekly';
+};
+
+const getPriority = (page) => {
+  if (page === '/') return '1.0';
+  if (page === '/blog') return '0.9';
+  return '0.8';
+};
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages.map(page => `
+${allPages.map(page => `
   <url>
     <loc>${baseUrl}${page}</loc>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>${page === '/' || page === '/blog' ? 'daily' : 'weekly'}</changefreq>
-    <priority>${page === '/' ? '1.0' : page === '/blog' ? '0.9' : '0.8'}</priority>
+    <changefreq>${getChangefreq(page)}</changefreq>
+    <priority>${getPriority(page)}</priority>
   </url>
 `).join('')}
 </urlset>`;
@@ -45,5 +73,5 @@ if (!fs.existsSync(publicDir)) {
 }
 
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemap);
-console.log('✅ Sitemap generated with ' + pages.length + ' pages!');
-console.log('📝 Pages: ' + pages.join(', '));
+console.log('✅ Sitemap generated with ' + allPages.length + ' pages!');
+console.log('📝 Pages: ' + allPages.join(', '));

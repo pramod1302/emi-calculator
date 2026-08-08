@@ -7,7 +7,8 @@
     "dev": "vite",
     "start": "vite",
     "generate-sitemap": "node scripts/generate-sitemap.js",
-    "build": "npm run generate-sitemap && vite build",
+    "ping-google": "curl -s https://www.google.com/ping?sitemap=https://finance.truyon.com/sitemap.xml > /dev/null && echo '✅ Google pinged successfully' || echo '⚠️ Google ping failed'",
+    "build": "npm run generate-sitemap && vite build && npm run ping-google",
     "lint": "oxlint",
     "preview": "vite preview"
   },
