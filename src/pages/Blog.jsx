@@ -75,6 +75,13 @@ function Blog() {
       category: 'Insurance',
       excerpt: 'A comprehensive guide to selecting the best health insurance policy for you and your family.'
     },
+    {
+  slug: '/state-gsec-auction',
+  title: 'RBI Announces Auction of State Government Securities worth ₹15,300 Crore',
+  date: 'August 8, 2026',
+  category: 'RBI Policy',
+  excerpt: 'State Governments to raise ₹15,300 crore via auction on August 11, 2026. Retail investors can participate via RBI Retail Direct.'
+},
   ];
 
   // Sort articles by date (newest first)

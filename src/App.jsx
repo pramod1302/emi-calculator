@@ -14,6 +14,7 @@ import HealthInsuranceGuide from './pages/HealthInsuranceGuide';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import Contact from './pages/Contact';
+import StateGSecAuction from './pages/StateGSecAuction'; // 1. Import the new component
 import { initializeAds } from './components/AdUnits';
 
 function App() {
@@ -73,6 +74,9 @@ function App() {
   }
   if (path === '/health-insurance-guide') {
     return <HealthInsuranceGuide />;
+  }
+  if (path === '/state-gsec-auction') {
+    return <StateGSecAuction />; // 2. Add route handler for the new auction page
   }
   if (path === '/terms') {
     return <Terms />;
