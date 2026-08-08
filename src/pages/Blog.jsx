@@ -117,6 +117,76 @@ function Blog() {
       category: 'Banking Policy',
       excerpt: 'RBI resumes on-tap licensing for Urban Cooperative Banks after two decades, introducing strict net-worth and capital adequacy criteria to foster financial inclusion safely.'
     },
+    {
+  slug: '/home-loan-guide-2026',
+  title: '10 Things You Must Know Before You Avail a Home Loan',
+  date: 'August 8, 2026',
+  category: 'Home Loan',
+  excerpt: 'Planning to buy a house? Learn about eligibility, interest types, pre-approval, documentation, and insurance considerations before applying.'
+},
+{
+  slug: '/car-loan-guide-2026',
+  title: 'Key Things to Keep In Mind Before Applying for a Car Loan',
+  date: 'August 8, 2026',
+  category: 'Car Loan',
+  excerpt: 'Essential guide covering car loan interest rates, CIBIL score requirements, documentation, and tips to secure the best vehicle financing deal.'
+},
+{
+  slug: '/personal-loan-tips-2026',
+  title: '9 Best Personal Loan Tips You Must Follow',
+  date: 'August 8, 2026',
+  category: 'Personal Loan',
+  excerpt: 'Essential tips for managing personal loans, evaluating interest rates, maintaining high CIBIL scores, and optimizing your repayment tenure.'
+},
+{
+  slug: '/low-cibil-personal-loan-2026',
+  title: 'Can You Get a Personal Loan with a Low CIBIL Score?',
+  date: 'July 16, 2026',
+  category: 'Banking',
+  excerpt: 'Explore actionable options, co-applicant strategies, and credit-building practices to secure a personal loan even with a low CIBIL score.'
+},
+{
+  slug: '/gold-loan-guide-2026',
+  title: '5 Essential Things to Consider Before Getting a Gold Loan',
+  date: 'August 8, 2026',
+  category: 'Gold Loan',
+  excerpt: 'Key considerations before taking a gold loan, including interest rate comparison, tenure choices, gold purity valuation, and choosing trustworthy lenders.'
+},
+{
+  slug: '/bank-home-loan-comparison-2026',
+  title: 'Home Loan - SBI vs. ICICI Bank vs. HDFC Bank',
+  date: 'August 8, 2026',
+  category: 'Home Loan',
+  excerpt: 'Detailed comparison of interest rates, eligibility, processing fees, and maximum funding limits across SBI, HDFC Bank, and ICICI Bank.'
+},
+{
+  slug: '/home-loan-balance-transfer-2026',
+  title: 'How to Transfer Home Loan from One Bank to Another',
+  date: 'August 8, 2026',
+  category: 'Home Loan',
+  excerpt: 'A comprehensive guide on transferring your home loan balance to a new bank to secure lower interest rates and save on your overall interest outgo.'
+},
+{
+  slug: '/standing-deposit-facility-2026',
+  title: 'Standing Deposit Facility (SDF): Meaning and Implications for Investors',
+  date: 'August 23, 2024',
+  category: 'Personal Finance',
+  excerpt: 'Explore the definition of the Standing Deposit Facility (SDF), how it absorbs central bank liquidity without collateral, and what it means for online stock investors.'
+},
+{
+  slug: '/nbfc-vs-bank-personal-loan-2026',
+  title: 'NBFC vs. Traditional Bank Personal Loans: Which is Better?',
+  date: 'October 3, 2025',
+  category: 'Personal Finance',
+  excerpt: 'Compare NBFCs and traditional banks for personal loans. Understand key differences in approval speeds, CIBIL scores, documentation, and interest rates.'
+},
+{
+  slug: '/sbi-research-credit-growth-2026',
+  title: 'Bank Credit Growth to Remain Strong Despite Deposit Gap: SBI Research',
+  date: 'July 20, 2026',
+  category: 'Banking & Economy',
+  excerpt: 'SBI Research report indicates Indian banks are in a goldilocks period with strong capital adequacy, as credit growth of 18.6% outpaces deposit expansion.'
+},
   ];
 
   // Sort articles by date (newest first)
