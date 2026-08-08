@@ -76,12 +76,47 @@ function Blog() {
       excerpt: 'A comprehensive guide to selecting the best health insurance policy for you and your family.'
     },
     {
-  slug: '/state-gsec-auction',
-  title: 'RBI Announces Auction of State Government Securities worth ₹15,300 Crore',
-  date: 'August 8, 2026',
-  category: 'RBI Policy',
-  excerpt: 'State Governments to raise ₹15,300 crore via auction on August 11, 2026. Retail investors can participate via RBI Retail Direct.'
-},
+      slug: '/state-gsec-auction',
+      title: 'RBI Announces Auction of State Government Securities worth ₹15,300 Crore',
+      date: 'August 8, 2026',
+      category: 'RBI Policy',
+      excerpt: 'State Governments to raise ₹15,300 crore via auction on August 11, 2026. Retail investors can participate via RBI Retail Direct.'
+    },
+    {
+      slug: '/sbi-clerk-recruitment-2026',
+      title: 'SBI Clerk Recruitment 2026: 1,538 Backlog Vacancies Announced',
+      date: 'August 8, 2026',
+      category: 'Government Jobs',
+      excerpt: 'SBI invites applications for 1,538 Junior Associate vacancies. Check eligibility and how to apply for the special drive.'
+    },
+    {
+      slug: '/sbi-q1-results-2026',
+      title: 'SBI Standalone Net Profit Up 10.2% to ₹21,121 Crore on Higher Interest Income',
+      date: 'August 7, 2026',
+      category: 'Banking News',
+      excerpt: 'State Bank of India reports a 10.2% jump in Q1 net profit powered by a 15% increase in net interest income and robust credit expansion.'
+    },
+    {
+      slug: '/hindalco-q1-results-2026',
+      title: 'Hindalco Q1 Net Profit Surges 75% to ₹7,013 Crore, Sales Up 32%',
+      date: 'August 7, 2026',
+      category: 'Corporate News',
+      excerpt: 'Aditya Birla flagship Hindalco posts strong Q1 results driven by robust momentum in the India aluminum business and recovery at Novelis.'
+    },
+    {
+      slug: '/model-bit-review-2026',
+      title: 'Revamp of Model Bilateral Investment Treaty in Works, to be Presented to Cabinet Soon: Secy',
+      date: 'August 7, 2026',
+      category: 'Economy & Policy',
+      excerpt: 'Finance Ministry reviewing India\'s Model BIT framework to enhance investor-friendly terms, address global arbitration practices, and protect overseas Indian investments.'
+    },
+    {
+      slug: '/urban-cooperative-banks-2026',
+      title: 'RBI Gives Urban Cooperative Banks New Lease of Life | Explained',
+      date: 'August 7, 2026',
+      category: 'Banking Policy',
+      excerpt: 'RBI resumes on-tap licensing for Urban Cooperative Banks after two decades, introducing strict net-worth and capital adequacy criteria to foster financial inclusion safely.'
+    },
   ];
 
   // Sort articles by date (newest first)
@@ -102,8 +137,16 @@ function Blog() {
 
       <div className="max-w-4xl mx-auto">
         
-        {/* Back to Home */}
-        <a href="/" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6 text-sm">
+        {/* Back to Home / Calculator */}
+        <a 
+          href="/" 
+          onClick={(e) => {
+            e.preventDefault();
+            window.history.pushState({}, '', '/');
+            window.dispatchEvent(new PopStateEvent('popstate'));
+          }}
+          className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6 text-sm cursor-pointer"
+        >
           ← Back to Calculator
         </a>
 
@@ -126,7 +169,12 @@ function Blog() {
             <React.Fragment key={article.slug}>
               <a 
                 href={article.slug} 
-                className="block bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm hover:shadow-md transition border border-slate-200 dark:border-slate-700"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState({}, '', article.slug);
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }}
+                className="block bg-white dark:bg-slate-800 rounded-xl p-5 shadow-sm hover:shadow-md transition border border-slate-200 dark:border-slate-700 cursor-pointer"
               >
                 <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mb-2">
                   <span className="text-blue-600 dark:text-blue-400 font-medium">{article.category}</span>

@@ -14,7 +14,12 @@ import HealthInsuranceGuide from './pages/HealthInsuranceGuide';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import Contact from './pages/Contact';
-import StateGSecAuction from './pages/StateGSecAuction'; // 1. Import the new component
+import StateGSecAuction from './pages/StateGSecAuction';
+import SBIClerk2026 from './pages/SBIClerk2026';
+import SBIQ1Results2026 from './pages/SBIQ1Results2026';
+import HindalcoQ1Results2026 from './pages/HindalcoQ1Results2026';
+import ModelBITReview2026 from './pages/ModelBITReview2026';
+import UrbanCooperativeBanks2026 from './pages/UrbanCooperativeBanks2026';
 import { initializeAds } from './components/AdUnits';
 
 function App() {
@@ -87,7 +92,21 @@ function App() {
   if (path === '/contact') {
     return <Contact />;
   }
-  
+  if (path === '/sbi-clerk-recruitment-2026') {
+  return <SBIClerk2026 />;
+}
+if (path === '/sbi-q1-results-2026') {
+  return <SBIQ1Results2026 />;
+}
+if (path === '/hindalco-q1-results-2026') {
+  return <HindalcoQ1Results2026 />;
+}
+if (path === '/model-bit-review-2026') {
+  return <ModelBITReview2026 />;
+}
+if (path === '/urban-cooperative-banks-2026') {
+  return <UrbanCooperativeBanks2026 />;
+}
   // Default: show calculator
   return <EMICalculator />;
 }
