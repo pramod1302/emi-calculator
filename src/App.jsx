@@ -54,6 +54,7 @@ import HomeLoanTenureGuide2026 from './pages/HomeLoanTenureGuide2026';
 import TermInsuranceVsUlip2026 from './pages/TermInsuranceVsUlip2026';
 import ClaimSettlementRatioGuide2026 from './pages/ClaimSettlementRatioGuide2026';
 import TopHealthInsurance2026 from './pages/TopHealthInsurance2026';
+import MSMEDAmendment2026 from './pages/MSMEDAmendment2026';
 import { initializeAds } from './components/AdUnits';
 
 function App() {
@@ -242,6 +243,9 @@ if (path === '/claim-settlement-ratio-guide-2026') {
 }
 if (path === '/top-health-insurance-2026') {
   return <TopHealthInsurance2026 />;
+}
+if (path === '/msmed-amendment-bill-2026') {
+  return <MSMEDAmendment2026 />;
 }
   // Default: show calculator
   return <EMICalculator />;

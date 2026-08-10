@@ -356,6 +356,13 @@ function Blog() {
   category: 'Health Insurance',
   excerpt: 'Explore Ditto’s top-rated health insurance plans for 2026, featuring HDFC Ergo Optima Secure+, Care Supreme, and Aditya Birla Activ One.'
 },
+{
+  "slug": "/msmed-amendment-bill-2026",
+  "title": "MSMED Amendment Bill 2026 Passed: What It Means for Indian Small Businesses",
+  "date": "August 7, 2026",
+  "category": "Policy & Regulations",
+  "excerpt": "Discover key takeaways from the MSMED Amendment Bill 2026 passed by Parliament. Learn how it tackles delayed payments, TReDS mandates, and eases compliance."
+},
   ];
 
   // Sort articles by date (newest first)
