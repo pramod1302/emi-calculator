@@ -1,109 +1,389 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>
-    <loc>https://finance.truyon.com/</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/blog</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/upi-charges-bill</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/rbi-repo-rate-august-2026</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/home-loan-tips</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/sebi-mf-pms-proposal</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/sip-vs-fd</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/goldman-sachs-gdp-upgrade</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/budget-2026</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/moodys-forecast</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/income-tax-rules-2026</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/health-insurance-guide</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/terms</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/privacy</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://finance.truyon.com/contact</loc>
-    <lastmod>2026-08-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
+    <url>
+      <loc>https://finance.truyon.com/home-loan-tips</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/rbi-repo-rate-august-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/sip-vs-fd</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/upi-charges-bill</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/blog</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.9</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/sebi-mf-pms-proposal</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/goldman-sachs-gdp-upgrade</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/budget-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/moodys-forecast</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/income-tax-rules-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/health-insurance-guide</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/state-gsec-auction</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/terms</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/privacy</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/contact</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/sbi-clerk-recruitment-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/sbi-q1-results-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/hindalco-q1-results-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/model-bit-review-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/urban-cooperative-banks-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/home-loan-guide-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/car-loan-guide-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/personal-loan-tips-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/low-cibil-personal-loan-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/gold-loan-guide-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/bank-home-loan-comparison-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/home-loan-balance-transfer-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/standing-deposit-facility-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/nbfc-vs-bank-personal-loan-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/sbi-research-credit-growth-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/varma-bank-dominance-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/choosing-savings-account-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/fixed-deposit-guide-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/emergency-fund-guide-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/no-spend-challenge-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/grocery-savings-guide-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/invest-or-repay-debts-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/holiday-overspending-recovery-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/invisible-price-tag-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/hidden-cost-delaying-investments-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/start-sip-500-per-month-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/sip-vs-fd-guide-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/asset-allocation-guide-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/power-of-compounding-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/mutual-funds-vs-stocks-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/sip-guide-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/mutual-fund-factsheet-guide-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/ten-rupee-weekly-challenge-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/top-sip-funds-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/save-home-loan-interest-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/home-loan-tenure-guide-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/term-insurance-vs-ulip-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/claim-settlement-ratio-guide-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/top-health-insurance-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://finance.truyon.com/msmed-amendment-bill-2026</loc>
+      <lastmod>2026-08-15</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
 </urlset>

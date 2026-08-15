@@ -1,0 +1,14 @@
+# robots.txt for finance.truyon.com
+User-agent: *
+Allow: /
+Sitemap: https://finance.truyon.com/sitemap.xml
+
+# Disallow admin or private paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Crawl-delay for aggressive bots
+Crawl-delay: 1
+
+Host: finance.truyon.com
