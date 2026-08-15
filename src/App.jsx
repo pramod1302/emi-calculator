@@ -1,254 +1,337 @@
-import { useEffect, useState } from 'react';
-import EMICalculator from './EMICalculator';
-import HomeLoanTips from './pages/HomeLoanTips';
-import SIPvsFD from './pages/SIPvsFD';
-import UPIChargesBill from './pages/UPIChargesBill';
-import RBIRepoRate from './pages/RBIRepoRate';
-import Blog from './pages/Blog';
-import MFOnlyPMS from './pages/MFOnlyPMS';
-import GoldmanSachsGDP from './pages/GoldmanSachsGDP';
-import Budget2026 from './pages/Budget2026';
-import MoodysForecast from './pages/MoodysForecast';
-import IncomeTaxRules2026 from './pages/IncomeTaxRules2026';
-import HealthInsuranceGuide from './pages/HealthInsuranceGuide';
-import Terms from './pages/Terms';
-import Privacy from './pages/Privacy';
-import Contact from './pages/Contact';
-import StateGSecAuction from './pages/StateGSecAuction';
-import SBIClerk2026 from './pages/SBIClerk2026';
-import SBIQ1Results2026 from './pages/SBIQ1Results2026';
-import HindalcoQ1Results2026 from './pages/HindalcoQ1Results2026';
-import ModelBITReview2026 from './pages/ModelBITReview2026';
-import UrbanCooperativeBanks2026 from './pages/UrbanCooperativeBanks2026';
-import HomeLoanGuide2026 from './pages/HomeLoanGuide2026';
-import CarLoanGuide2026 from './pages/CarLoanGuide2026';
-import PersonalLoanTips2026 from './pages/PersonalLoanTips2026';
-import LowCibilPersonalLoan2026 from './pages/LowCibilPersonalLoan2026';
-import GoldLoanGuide2026 from './pages/GoldLoanGuide2026';
-import BankHomeLoanComparison2026 from './pages/BankHomeLoanComparison2026';
-import HomeLoanBalanceTransfer2026 from './pages/HomeLoanBalanceTransfer2026';
-import StandingDepositFacility2026 from './pages/StandingDepositFacility2026';
-import NbfcVsBankPersonalLoan2026 from './pages/NbfcVsBankPersonalLoan2026';
-import SbiResearchCreditGrowth2026 from './pages/SbiResearchCreditGrowth2026';
-import VarmaBankDominance2026 from './pages/VarmaBankDominance2026';
-import ChoosingSavingsAccount2026 from './pages/ChoosingSavingsAccount2026';
-import FixedDepositGuide2026 from './pages/FixedDepositGuide2026';
-import EmergencyFundGuide2026 from './pages/EmergencyFundGuide2026';
-import NoSpendChallenge2026 from './pages/NoSpendChallenge2026';
-import GrocerySavingsGuide2026 from './pages/GrocerySavingsGuide2026';
-import InvestOrRepayDebts2026 from './pages/InvestOrRepayDebts2026';
-import HolidayOverspendingRecovery2026 from './pages/HolidayOverspendingRecovery2026';
-import InvisiblePriceTag2026 from './pages/InvisiblePriceTag2026';
-import HiddenCostDelayingInvestments2026 from './pages/HiddenCostDelayingInvestments2026';
-import StartSip500PerMonth2026 from './pages/StartSip500PerMonth2026';
-import SipVsFdGuide2026 from './pages/SipVsFdGuide2026';
-import AssetAllocationGuide2026 from './pages/AssetAllocationGuide2026';
-import PowerOfCompoundingGuide2026 from './pages/PowerOfCompoundingGuide2026';
-import MutualFundsVsStocks2026 from './pages/MutualFundsVsStocks2026';
-import SipGuide2026 from './pages/SipGuide2026';
-import MutualFundFactsheetGuide2026 from './pages/MutualFundFactsheetGuide2026';
-import TenRupeeWeeklyChallenge2026 from './pages/TenRupeeWeeklyChallenge2026';
-import TopSipFunds2026 from './pages/TopSipFunds2026';
-import SaveHomeLoanInterest2026 from './pages/SaveHomeLoanInterest2026';
-import HomeLoanTenureGuide2026 from './pages/HomeLoanTenureGuide2026';
-import TermInsuranceVsUlip2026 from './pages/TermInsuranceVsUlip2026';
-import ClaimSettlementRatioGuide2026 from './pages/ClaimSettlementRatioGuide2026';
-import TopHealthInsurance2026 from './pages/TopHealthInsurance2026';
-import MSMEDAmendment2026 from './pages/MSMEDAmendment2026';
-import { initializeAds } from './components/AdUnits';
+import { useState, useEffect } from 'react';
+import { 
+  FaLandmark, FaPiggyBank, FaBuilding, FaExchangeAlt, 
+  FaChartLine, FaWallet, FaRupeeSign, FaArrowLeft,
+  FaSun, FaMoon, FaNewspaper
+} from 'react-icons/fa';
+import { TopBannerAd, BottomBannerAd, SidebarAd, InFeedAd, initializeAds } from './components/AdUnits';
 
+// Import all tool components
+import EMICalculator from './components/EMICalculator';
+import SIPCalculator from './components/SIPCalculator';
+import FDCalculator from './components/FDCalculator';
+import CompareCalculator from './components/CompareCalculator';
+import InflationCalculator from './components/InflationCalculator';
+
+// Import Blog
+import Blog from './blog/Blog';
+
+// ==========================================
+// CURRENCY CONFIG
+// ==========================================
+const CURRENCY_SYMBOLS = {
+  INR: '₹', USD: '$', EUR: '€', GBP: '£', JPY: '¥', AUD: 'A$', CAD: 'C$'
+};
+
+// ==========================================
+// TOOL DEFINITIONS
+// ==========================================
+const TOOLS = [
+  {
+    id: 'emi',
+    name: 'EMI Calculator',
+    description: 'Calculate monthly loan payments with interest breakdown',
+    icon: <FaLandmark className="text-3xl" />,
+    color: 'from-blue-500 to-indigo-600',
+    component: EMICalculator,
+  },
+  {
+    id: 'sip',
+    name: 'SIP Planner',
+    description: 'Plan your monthly investments and see wealth growth',
+    icon: <FaPiggyBank className="text-3xl" />,
+    color: 'from-emerald-500 to-teal-600',
+    component: SIPCalculator,
+  },
+  {
+    id: 'fd',
+    name: 'Fixed Deposit',
+    description: 'Calculate guaranteed returns on your fixed deposits',
+    icon: <FaBuilding className="text-3xl" />,
+    color: 'from-amber-500 to-orange-600',
+    component: FDCalculator,
+  },
+  {
+    id: 'compare',
+    name: 'Loan Comparison',
+    description: 'Compare multiple loan options side by side',
+    icon: <FaExchangeAlt className="text-3xl" />,
+    color: 'from-purple-500 to-pink-600',
+    component: CompareCalculator,
+  },
+  {
+    id: 'inflation',
+    name: 'Inflation Impact',
+    description: 'See how inflation erodes your money\'s value over time',
+    icon: <FaChartLine className="text-3xl" />,
+    color: 'from-red-500 to-rose-600',
+    component: InflationCalculator,
+  },
+];
+
+// ==========================================
+// MAIN APP
+// ==========================================
 function App() {
-  const [path, setPath] = useState(window.location.pathname);
+  const [darkMode, setDarkMode] = useState(false);
+  const [selectedTool, setSelectedTool] = useState(null);
+  const [currency, setCurrency] = useState('INR');
+  const [isBlog, setIsBlog] = useState(false);
 
+  const symbol = CURRENCY_SYMBOLS[currency] || '₹';
+
+  const formatCurrency = (val) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: currency,
+      maximumFractionDigits: 0,
+    }).format(val || 0);
+  };
+
+  // ==========================================
+  // URL SYNC: Read URL on page load
+  // ==========================================
+  useEffect(() => {
+    const path = window.location.pathname;
+
+    // Check if it's a blog route
+    if (path === '/blog' || path.startsWith('/blog/')) {
+      setIsBlog(true);
+      setSelectedTool(null);
+      return;
+    }
+
+    // Check if it's a tool route
+    const tool = TOOLS.find(t => `/${t.id}` === path);
+    if (tool) {
+      setSelectedTool(tool.id);
+      setIsBlog(false);
+    }
+  }, []);
+
+  // ==========================================
+  // URL SYNC: Handle browser back/forward
+  // ==========================================
   useEffect(() => {
     const handlePopState = () => {
-      setPath(window.location.pathname);
+      const path = window.location.pathname;
+
+      if (path === '/blog' || path.startsWith('/blog/')) {
+        setIsBlog(true);
+        setSelectedTool(null);
+        return;
+      }
+
+      const tool = TOOLS.find(t => `/${t.id}` === path);
+      if (tool) {
+        setSelectedTool(tool.id);
+        setIsBlog(false);
+      } else {
+        setSelectedTool(null);
+        setIsBlog(false);
+      }
     };
     window.addEventListener('popstate', handlePopState);
-    
-    // Initialize AdSense on page load
-    setTimeout(() => {
-      initializeAds();
-    }, 100);
-    
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Re-initialize ads when path changes
+  // ==========================================
+  // NAVIGATION FUNCTIONS
+  // ==========================================
+  const selectTool = (toolId) => {
+    setSelectedTool(toolId);
+    setIsBlog(false);
+    window.history.pushState({ tool: toolId }, '', `/${toolId}`);
+  };
+
+  const goToDashboard = () => {
+    setSelectedTool(null);
+    setIsBlog(false);
+    window.history.pushState({}, '', '/');
+  };
+
+  const goToBlog = () => {
+    setIsBlog(true);
+    setSelectedTool(null);
+    window.history.pushState({}, '', '/blog');
+  };
+
+  // Initialize ads on load
+  useEffect(() => {
+    setTimeout(() => {
+      initializeAds();
+    }, 100);
+  }, []);
+
+  // Re-initialize ads when view changes
   useEffect(() => {
     setTimeout(() => {
       initializeAds();
     }, 200);
-  }, [path]);
+  }, [selectedTool, isBlog]);
 
-  // Check for blog post routes
-  if (path === '/home-loan-tips') {
-    return <HomeLoanTips />;
-  }
-  if (path === '/rbi-repo-rate-august-2026') {
-    return <RBIRepoRate />;
-  }
-  if (path === '/sip-vs-fd') {
-    return <SIPvsFD />;
-  }
-  if (path === '/upi-charges-bill') {
-    return <UPIChargesBill />;
-  }
-  if (path === '/blog') {
+  const ToolComponent = selectedTool 
+    ? TOOLS.find(t => t.id === selectedTool)?.component 
+    : null;
+
+  // ==========================================
+  // RENDER BLOG
+  // ==========================================
+  if (isBlog) {
     return <Blog />;
   }
-  if (path === '/sebi-mf-pms-proposal') {
-    return <MFOnlyPMS />;
-  }
-  if (path === '/goldman-sachs-gdp-upgrade') {
-    return <GoldmanSachsGDP />;
-  }
-  if (path === '/budget-2026') {
-    return <Budget2026 />;
-  }
-  if (path === '/moodys-forecast') {
-    return <MoodysForecast />;
-  }
-  if (path === '/income-tax-rules-2026') {
-    return <IncomeTaxRules2026 />;
-  }
-  if (path === '/health-insurance-guide') {
-    return <HealthInsuranceGuide />;
-  }
-  if (path === '/state-gsec-auction') {
-    return <StateGSecAuction />; // 2. Add route handler for the new auction page
-  }
-  if (path === '/terms') {
-    return <Terms />;
-  }
-  if (path === '/privacy') {
-    return <Privacy />;
-  }
-  if (path === '/contact') {
-    return <Contact />;
-  }
-  if (path === '/sbi-clerk-recruitment-2026') {
-  return <SBIClerk2026 />;
-}
-if (path === '/sbi-q1-results-2026') {
-  return <SBIQ1Results2026 />;
-}
-if (path === '/hindalco-q1-results-2026') {
-  return <HindalcoQ1Results2026 />;
-}
-if (path === '/model-bit-review-2026') {
-  return <ModelBITReview2026 />;
-}
-if (path === '/urban-cooperative-banks-2026') {
-  return <UrbanCooperativeBanks2026 />;
-}
-if (path === '/home-loan-guide-2026') {
-  return <HomeLoanGuide2026 />;
-}
-if (path === '/car-loan-guide-2026') {
-  return <CarLoanGuide2026 />;
-}
-if (path === '/personal-loan-tips-2026') {
-  return <PersonalLoanTips2026 />;
-}
-if (path === '/low-cibil-personal-loan-2026') {
-  return <LowCibilPersonalLoan2026 />;
-}
-if (path === '/gold-loan-guide-2026') {
-  return <GoldLoanGuide2026 />;
-}
-if (path === '/bank-home-loan-comparison-2026') {
-  return <BankHomeLoanComparison2026 />;
-}
-if (path === '/home-loan-balance-transfer-2026') {
-  return <HomeLoanBalanceTransfer2026 />;
-}
-if (path === '/standing-deposit-facility-2026') {
-  return <StandingDepositFacility2026 />;
-}
-if (path === '/nbfc-vs-bank-personal-loan-2026') {
-  return <NbfcVsBankPersonalLoan2026 />;
-}
-if (path === '/sbi-research-credit-growth-2026') {
-  return <SbiResearchCreditGrowth2026 />;
-}
-if (path === '/varma-bank-dominance-2026') {
-  return <VarmaBankDominance2026 />;
-}
-if (path === '/choosing-savings-account-2026') {
-  return <ChoosingSavingsAccount2026 />;
-}
-if (path === '/fixed-deposit-guide-2026') {
-  return <FixedDepositGuide2026 />;
-}
-if (path === '/emergency-fund-guide-2026') {
-  return <EmergencyFundGuide2026 />;
-}
-if (path === '/no-spend-challenge-2026') {
-  return <NoSpendChallenge2026 />;
-}
-if (path === '/grocery-savings-guide-2026') {
-  return <GrocerySavingsGuide2026 />;
-}
-if (path === '/invest-or-repay-debts-2026') {
-  return <InvestOrRepayDebts2026 />;
-}
-if (path === '/holiday-overspending-recovery-2026') {
-  return <HolidayOverspendingRecovery2026 />;
-}
-if (path === '/invisible-price-tag-2026') {
-  return <InvisiblePriceTag2026 />;
-}
-if (path === '/hidden-cost-delaying-investments-2026') {
-  return <HiddenCostDelayingInvestments2026 />;
-}
-if (path === '/start-sip-500-per-month-2026') {
-  return <StartSip500PerMonth2026 />;
-}
-if (path === '/sip-vs-fd-guide-2026') {
-  return <SipVsFdGuide2026 />;
-}
-if (path === '/asset-allocation-guide-2026') {
-  return <AssetAllocationGuide2026 />;
-}
-if (path === '/power-of-compounding-2026') {
-  return <PowerOfCompoundingGuide2026 />;
-}
-if (path === '/mutual-funds-vs-stocks-2026') {
-  return <MutualFundsVsStocks2026 />;
-}
-if (path === '/sip-guide-2026') {
-  return <SipGuide2026 />;
-}
-if (path === '/mutual-fund-factsheet-guide-2026') {
-  return <MutualFundFactsheetGuide2026 />;
-}
-if (path === '/ten-rupee-weekly-challenge-2026') {
-  return <TenRupeeWeeklyChallenge2026 />;
-}
-if (path === '/top-sip-funds-2026') {
-  return <TopSipFunds2026 />;
-}
-if (path === '/save-home-loan-interest-2026') {
-  return <SaveHomeLoanInterest2026 />;
-}
-if (path === '/home-loan-tenure-guide-2026') {
-  return <HomeLoanTenureGuide2026 />;
-}
-if (path === '/term-insurance-vs-ulip-2026') {
-  return <TermInsuranceVsUlip2026 />;
-}
-if (path === '/claim-settlement-ratio-guide-2026') {
-  return <ClaimSettlementRatioGuide2026 />;
-}
-if (path === '/top-health-insurance-2026') {
-  return <TopHealthInsurance2026 />;
-}
-if (path === '/msmed-amendment-bill-2026') {
-  return <MSMEDAmendment2026 />;
-}
-  // Default: show calculator
-  return <EMICalculator />;
+
+  // ==========================================
+  // RENDER DASHBOARD / TOOLS
+  // ==========================================
+  return (
+    <div className={`min-h-screen transition-colors duration-300 font-sans ${
+      darkMode ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'
+    }`}>
+      {/* HEADER */}
+      <header className="sticky top-0 z-40 backdrop-blur-md bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 px-4 py-3 sm:px-8 transition-colors">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img 
+              src="/T.png" 
+              alt="Truyon" 
+              className="h-10 w-10 sm:h-11 sm:w-11 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 object-cover"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
+            />
+            <div className="hidden h-10 w-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 items-center justify-center text-white font-bold text-xl shadow-md">
+              T
+            </div>
+            <div>
+              <h1 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                Truyon <span className="text-blue-600 dark:text-blue-400">Finance</span>
+              </h1>
+              <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
+                {selectedTool ? 'Smart Financial Planning Tools' : 'Choose a tool to get started'}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 sm:gap-3">
+            {selectedTool && (
+              <button
+                onClick={goToDashboard}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition border border-slate-200 dark:border-slate-700"
+              >
+                <FaArrowLeft className="text-xs" />
+                <span className="hidden sm:inline">Back</span>
+              </button>
+            )}
+            <select
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+              className="px-2.5 py-1.5 rounded-lg text-xs sm:text-sm font-medium border bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+            >
+              {Object.keys(CURRENCY_SYMBOLS).map((c) => (
+                <option key={c} value={c}>{c} ({CURRENCY_SYMBOLS[c]})</option>
+              ))}
+            </select>
+            <button
+              onClick={goToBlog}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition border border-blue-200 dark:border-blue-800"
+            >
+              <FaNewspaper className="text-xs" />
+              <span className="hidden sm:inline">Blog</span>
+            </button>
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition border border-slate-200 dark:border-slate-700"
+              aria-label="Toggle Theme"
+            >
+              {darkMode ? <FaSun className="text-amber-400" /> : <FaMoon />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+        <TopBannerAd />
+
+        {!selectedTool ? (
+          // ==========================================
+          // DASHBOARD VIEW - SHOW ALL TOOLS AS CARDS
+          // ==========================================
+          <>
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white">💰 Financial Tools</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Select a tool to get started</p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {TOOLS.map((tool) => (
+                <button
+                  key={tool.id}
+                  onClick={() => selectTool(tool.id)}
+                  className="group text-left bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-blue-400 dark:hover:border-blue-600 transition-all hover:-translate-y-1"
+                >
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${tool.color} flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform`}>
+                    {tool.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-800 dark:text-white">{tool.name}</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{tool.description}</p>
+                  <div className="mt-4 text-blue-600 dark:text-blue-400 font-medium text-sm flex items-center gap-1">
+                    Try Now →
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-8">
+              <InFeedAd />
+            </div>
+          </>
+        ) : (
+          // ==========================================
+          // TOOL VIEW - SHOW SELECTED TOOL
+          // ==========================================
+          <>
+            {ToolComponent ? (
+              <ToolComponent 
+                formatCurrency={formatCurrency} 
+                symbol={symbol} 
+                darkMode={darkMode} 
+              />
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-slate-500 dark:text-slate-400">Tool coming soon...</p>
+                <button
+                  onClick={goToDashboard}
+                  className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700"
+                >
+                  Back to Tools
+                </button>
+              </div>
+            )}
+          </>
+        )}
+
+        <BottomBannerAd />
+
+        {/* FOOTER */}
+        <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-700 text-center text-xs text-slate-400 space-y-2">
+          <div className="flex justify-center gap-4 flex-wrap">
+            <button onClick={goToBlog} className="text-blue-600 dark:text-blue-400 hover:underline">Blog</button>
+            <span className="text-slate-300 dark:text-slate-600">|</span>
+            <a href="/terms" className="text-blue-600 dark:text-blue-400 hover:underline">Terms</a>
+            <span className="text-slate-300 dark:text-slate-600">|</span>
+            <a href="/privacy" className="text-blue-600 dark:text-blue-400 hover:underline">Privacy</a>
+            <span className="text-slate-300 dark:text-slate-600">|</span>
+            <a href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">Contact</a>
+          </div>
+          <div>
+            © 2026 <span className="text-blue-600 dark:text-blue-400 font-medium">Truyon</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
 }
 
 export default App;
